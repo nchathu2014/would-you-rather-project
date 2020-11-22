@@ -1,0 +1,25 @@
+import React from "react";
+import {Card, Button, Container,Row,Col,Alert,ProgressBar} from "react-bootstrap";
+
+export default function WouldYouRatherView(){
+    return(
+        <Card className="text-center" style={{width:'45%',margin:'10% auto'}}>
+            <Card.Header style={{fontWeight:'bold',fontSize:14}}>
+                <h3>Nuwan Chathuranga</h3>
+            </Card.Header>
+            <Card.Body>
+                <Container fluid="md">
+                    <Row>
+                        <Col sm={3}>IMAGE</Col>
+                        <Col sm={9}>
+                            <p>Option 1</p>
+                            <Button variant="success">View All</Button>
+
+                        </Col>
+
+                    </Row>
+                </Container>
+            </Card.Body>
+        </Card>
+    );
+}
