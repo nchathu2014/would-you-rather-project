@@ -2,6 +2,7 @@ import React from "react";
 import {Nav,Navbar,Button} from "react-bootstrap";
 import {connect} from "react-redux";
 import {removeLoggedUserToStore} from "../actions/loggedUser";
+import { NavLink,withRouter } from 'react-router-dom'
 
 
 function NavBar(props){
@@ -10,29 +11,38 @@ function NavBar(props){
 
     const handleLogout = () => {
         props.dispatch(removeLoggedUserToStore());
+        props.history.push(`/`)
     };
 
     return(
-        <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="#home">WYR</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav variant="pills">
-                    <Nav.Link href="/home" disabled = {loggedUser === null}>Home</Nav.Link>
-                    <Nav.Link href="#link" disabled = {loggedUser === null}>New Question</Nav.Link>
-                    <Nav.Link href="#link" disabled = {loggedUser === null}>Leader Board</Nav.Link>
-                </Nav>
-                {(loggedUser !== null) &&
-                <Navbar.Collapse className="justify-content-end">
-                    <Navbar.Text>
-                         <strong>Signed in as: </strong> {loggedUser}
-                        <Button  style={{marginLeft:10}} variant="outline-success" onClick={handleLogout}>Logout</Button>
-                    </Navbar.Text>
-                </Navbar.Collapse>
+        <nav className="nav">
+            <ul>
+                <li>
+                    <NavLink exact to="/home" activeClassName="active">
+                        Home
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/new-question" activeClassName="active">
+                        New Question
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/leader-board" activeClassName="active">
+                        Leader Board
+                    </NavLink>
+                </li>
+
+                {loggedUser !== null &&
+                <li>
+                    <strong>Signed in as: </strong> {loggedUser}
+                    <Button  style={{marginLeft:10}} variant="outline-success" onClick={handleLogout}>Logout</Button>
+
+                </li>
                 }
 
-            </Navbar.Collapse>
-        </Navbar>
+            </ul>
+        </nav>
     );
 }
 
@@ -42,4 +52,4 @@ function mapStateToProps({loggedUser}) {
     }
 }
 
-export default connect(mapStateToProps,null)(NavBar);
+export default withRouter(connect(mapStateToProps,null)(NavBar));

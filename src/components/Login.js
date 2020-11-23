@@ -2,6 +2,7 @@ import React,{Component} from "react";
 import {Card, Button, Form} from "react-bootstrap";
 import {connect} from "react-redux";
 import {addLoggedUserToStore} from "../actions/loggedUser";
+import {Link, withRouter} from "react-router-dom";
 
 class Login extends Component{
 
@@ -11,18 +12,16 @@ class Login extends Component{
 
 
     handleLoginUserSelect = (e) => {
-        const selectedUser = e.target.value;
-        if(selectedUser !== "-1"){
+        const selectedUser =  e.target.value;
             this.setState({
                 selectedUser
             });
-        }
-
     };
 
     handleUserLogin = () =>{
         const {selectedUser} = this.state;
         this.props.dispatch(addLoggedUserToStore(selectedUser));
+        this.props.history.push(`/home`)
     };
 
     render() {
@@ -57,4 +56,4 @@ class Login extends Component{
     }
 }
 
-export default connect()(Login);
+export default withRouter(connect()(Login));

@@ -10,9 +10,13 @@ import WouldYouRatherResults from "./components/WouldYouRatherResults";
 import Score from "./components/Score";
 import WouldYouRatherView from "./components/WouldYourRatherView";
 
+import {BrowserRouter as Router, Route} from "react-router-dom";
+
 import {getUsersFromBE} from "./actions/shared"
 import LoadingBar from "react-redux-loading";
 import {connect} from "react-redux";
+import Home from "./components/Home";
+import {LeaderBoard} from "./components/LeaderBoard";
 
 class App extends Component{
 
@@ -22,16 +26,25 @@ class App extends Component{
 
     render() {
       return (
-          <div className="App">
-              <NavBar/>
-              <LoadingBar/>
-              <Login users={this.props.users}/>
-              {/*   <NewQuestion/>
+          <Router>
+              <div className="App">
+                  <NavBar/>
+                  <LoadingBar style={{ backgroundColor: '#28a745', height: '5px' }} />
+
+                  <Route exact path="/" render={()=>(
+                      <Login users={this.props.users}/>
+                  )}/>
+
+                  <Route path="/home" component={Home}/>
+                  <Route path="/new-question" component={NewQuestion}/>
+                  <Route path="/leader-board" component={LeaderBoard}/>
+                  {/*   <NewQuestion/>
         <WouldYouRatherSelect/>
         <WouldYouRatherResults/>
         <Score/>
         <WouldYouRatherView/>*/}
-          </div>
+              </div>
+          </Router>
       );
   }
 }
