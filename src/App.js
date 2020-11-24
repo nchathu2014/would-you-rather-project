@@ -12,19 +12,22 @@ import WouldYouRatherView from "./components/WouldYourRatherView";
 
 import {BrowserRouter as Router, Route} from "react-router-dom";
 
-import {getUsersFromBE} from "./actions/shared"
+import {getUsersFromBE,getQuestionsFromBE} from "./actions/shared"
 import LoadingBar from "react-redux-loading";
 import {connect} from "react-redux";
 import Home from "./components/Home";
-import {LeaderBoard} from "./components/LeaderBoard";
+import LeaderBoard from "./components/LeaderBoard";
+
 
 class App extends Component{
 
     componentDidMount() {
         this.props.dispatch(getUsersFromBE());
+        this.props.dispatch(getQuestionsFromBE());
     }
 
     render() {
+        console.log('==>',this.props.questionIds)
       return (
           <Router>
               <div className="App">
@@ -35,8 +38,12 @@ class App extends Component{
                       <Login users={this.props.users}/>
                   )}/>
 
-                  <Route path="/home" component={Home}/>
-                  <Route path="/new-question" component={NewQuestion}/>
+                  <Route path="/home" render={()=>(
+                      <Home questionIds = {this.props.questionIds}/>
+                  )}/>
+                  <Route path="/new-question" render={()=>(
+                          <NewQuestion loggedUser={this.props.loggedUser}/>
+                  )}/>
                   <Route path="/leader-board" component={LeaderBoard}/>
                   {/*   <NewQuestion/>
         <WouldYouRatherSelect/>
@@ -49,9 +56,13 @@ class App extends Component{
   }
 }
 
-function mapStateToProps({users}) {
+function mapStateToProps({users,questions,loggedUser}) {
+
+
     return{
-        users:Object.keys(users)
+        users:Object.keys(users),
+        questionIds: Object.keys(questions),
+        loggedUser
     }
 }
 

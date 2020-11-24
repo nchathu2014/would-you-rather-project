@@ -13,7 +13,7 @@ export default function WouldYouRatherView(){
                         <Col sm={3}>IMAGE</Col>
                         <Col sm={9}>
                             <p>Option 1</p>
-                            <Button variant="success">View All</Button>
+                            <Button variant="success">View Poll</Button>
 
                         </Col>
 

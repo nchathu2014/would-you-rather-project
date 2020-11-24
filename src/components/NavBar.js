@@ -18,17 +18,24 @@ function NavBar(props){
         <nav className="nav">
             <ul>
                 <li>
-                    <NavLink exact to="/home" activeClassName="active">
+                    <NavLink
+                        exact
+                        to={loggedUser !== null ? "/home" : "/"}
+                        activeClassName={loggedUser !== null?"active":"select"}>
                         Home
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/new-question" activeClassName="active">
+                    <NavLink
+                        to={loggedUser !== null ? "/new-question" : "/"}
+                        activeClassName={loggedUser !== null?"active":"select"}>
                         New Question
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/leader-board" activeClassName="active">
+                    <NavLink
+                        to={loggedUser !== null ? "/leader-board" : "/"}
+                        activeClassName={loggedUser !== null?"active":"select"}>
                         Leader Board
                     </NavLink>
                 </li>
