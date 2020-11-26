@@ -7,18 +7,17 @@ import {connect} from "react-redux";
 const Home = function Home(props){
 
 
-
-           console.log('!!!!!!XXX!!!!!1',props.question);
-
+    console.log('@@@@answeredQuestions@@@@',props.answeredQuestions);
+    console.log('!!!!unAnsweredQuestions!!!!',props.unAnsweredQuestions);
 
         return (
             <div>
                 <Tabs defaultActiveKey="unAnsweredQs" id="uncontrolled-tab-example">
                     <Tab eventKey="unAnsweredQs" title="Unanswered Questions">
-                        <WouldYouRatherView/>
+                        <WouldYouRatherView questions = {props.unAnsweredQuestions}/>
                     </Tab>
                     <Tab eventKey="answeredQs" title="Answered Questions">
-                        <WouldYouRatherView/>
+                        <WouldYouRatherView questions = {props.answeredQuestions}/>
                     </Tab>
                 </Tabs>
             </div>
@@ -27,9 +26,22 @@ const Home = function Home(props){
 };
 
 function mapStateToProps({questions},{questionIds}) {
+    //console.log('!!!!!!questionIds!!!!!1',questionIds);
+    //console.log('!!!!!!questions!!!!!1',questions);
 
-return{
-    question:questions[questionIds]
+    const questionList = questionIds.map(questionId => questions[questionId]);
+
+    const unAnsweredQuestions = questionList.filter(question => {
+       return question.optionOne.votes.length + question.optionTwo.votes.length  === 0
+    });
+
+    const answeredQuestions = questionList.filter(question => {
+        return question.optionOne.votes.length + question.optionTwo.votes.length  !== 0
+    });
+
+    return{
+        unAnsweredQuestions,
+        answeredQuestions
 }
 }
 
