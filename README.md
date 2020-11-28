@@ -95,6 +95,47 @@ Your code will talk to the database via 4 methods:
 | qid | String | The id of the question that was answered|
 | answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
 
+
+## Contracts
+
+###USERS
+
+```
+users: {
+	johndoe: {
+		answers: {xj352vofupe1dqz9emx13r: "optionOne", vthrdm985a262al8qx3do: "optionTwo", 6ni6ok3ym7mf1p33lnez: "optionTwo"}
+		avatarURL: "https://tylermcginnis.com/would-you-rather/dan.jpg"
+		id: "johndoe"
+		name: "John Doe"
+		questions: (2) ["6ni6ok3ym7mf1p33lnez", "xj352vofupe1dqz9emx13r"]
+	},
+	sarahedo: {id: "sarahedo", name: "Sarah Edo", avatarURL: "https://tylermcginnis.com/would-you-rather/sarah.jpg", answers: {…}, questions: Array(2)}
+	tylermcginnis: {id: "tylermcginnis", name: "Tyler McGinnis", avatarURL: "https://tylermcginnis.com/would-you-rather/tyler.jpg", answers: {…}, questions: Array(2)}
+}
+```
+
+
+
+###QUESTIONS
+
+```
+questions: {
+	6ni6ok3ym7mf1p33lnez:{
+		id: "6ni6ok3ym7mf1p33lnez"
+		author: "johndoe"
+		optionOne: {votes: Array(0), text: "become a superhero"}
+		optionTwo: {votes: Array(2), text: "become a supervillain"}
+		timestamp: 1468479767190
+	
+	},
+	8xf0y6ziyjabvozdd253nd: {id: "8xf0y6ziyjabvozdd253nd", author: "sarahedo", timestamp: 1467166872634, optionOne: {…}, optionTwo: {…}}
+	am8ehyc8byjqgar0jgpub9: {id: "am8ehyc8byjqgar0jgpub9", author: "sarahedo", timestamp: 1488579767190, optionOne: {…}, optionTwo: {…}}
+	loxhs1bqm25b708cmbf3g: {id: "loxhs1bqm25b708cmbf3g", author: "tylermcginnis", timestamp: 1482579767190, optionOne: {…}, optionTwo: {…}}
+	vthrdm985a262al8qx3do: {id: "vthrdm985a262al8qx3do", author: "tylermcginnis", timestamp: 1489579767190, optionOne: {…}, optionTwo: {…}}
+	xj352vofupe1dqz9emx13r: {id: "xj352vofupe1dqz9emx13r", author: "johndoe", timestamp: 1493579767190, optionOne: {…}, optionTwo: {…}}		
+}
+```
+
 ## Contributing
 
 This repository is the starter code for *all* Udacity students. Therefore, we most likely will not accept pull requests. For details, check out [CONTRIBUTING.md](https://github.com/udacity/reactnd-project-would-you-rather-starter/blob/master/CONTRIBUTING.md).

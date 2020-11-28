@@ -34,7 +34,6 @@ export function saveNewQuestionToBE(newQuestion){
         dispatch(showLoading());
         return _saveQuestion(newQuestion)
             .then((question)=>{
-                console.log('###########!!!!',question)
                 dispatch(addNewQuestionToStore(question))
             })
             .then(()=>{

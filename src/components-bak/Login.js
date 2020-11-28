@@ -25,7 +25,6 @@ class Login extends Component{
     };
 
     render() {
-
         return(
             <Card className="text-center" style={{width:'35%',margin:'10% auto'}}>
                 <Card.Header style={{fontWeight:'bold',fontSize:20}}>Welcome to the Would! You Rather App </Card.Header>
@@ -35,13 +34,10 @@ class Login extends Component{
                         <Form>
                             <Form.Group controlId="exampleForm.ControlSelect1">
                                 <Form.Control as="select" onChange={(e)=>this.handleLoginUserSelect(e)}>
-                                    <option value="-1" selected disabled>--- Select User ---</option>
+                                    <option value="-1">Select User</option>
                                     {this.props.users.length > 0 &&
                                     this.props.users.map(user =>(
-                                        <option key={user.id} value={user.id}>
-                                           {user.name}
-                                        </option>
-
+                                        <option key={user} value={user}>{user}</option>
                                     ))
                                     }
                                 </Form.Control>
