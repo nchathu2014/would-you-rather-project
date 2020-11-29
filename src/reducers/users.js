@@ -1,4 +1,4 @@
-import {ADD_USERS_TO_STORE} from "../actions/users";
+import {ADD_USERS_TO_STORE, UPDATE_USER_QUESTIONS} from "../actions/users";
 
 export function users(state={},action){
 
@@ -7,6 +7,15 @@ export function users(state={},action){
             return {
                 ...state,
                 ...action.users
+            };
+
+        case UPDATE_USER_QUESTIONS:
+            return{
+                ...state,
+                [action.userId]:{
+                    ...state[action.userId],
+                    questions: state[action.userId].questions.concat([action.questionId])
+                }
             };
 
         default:

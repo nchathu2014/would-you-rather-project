@@ -3,6 +3,7 @@ import {Card, Button, Form} from "react-bootstrap";
 import {saveNewQuestionToBE} from "../actions/shared";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 
 
@@ -22,8 +23,6 @@ class NewQuestion extends Component{
         this.props.history.push('/home');
     };
     render() {
-
-
 
         return(
             <Card className="text-center" style={{width:'40%',margin:'10% auto'}}>

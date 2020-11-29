@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Login from "./components/Login";
-import React,{Component} from "react";
+import React, {Component, Fragment} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from "./components/NavBar";
 
@@ -27,17 +27,26 @@ class App extends Component{
       return (
           <Router>
               <div className="App">
-                  {this.props.loggedUser && <NavBar/>}
+
                   <LoadingBar style={{ backgroundColor: '#28a745', height: '5px' }} />
 
                   <Route exact path="/" render={()=>(
                       <Login users={this.props.users}/>
                   )}/>
 
-                  <Route path="/new-question" component={NewQuestion}/>
-                  <Route path="/home" render={()=>(
-                    <Home questions={this.props.questions}/>
-                  )}/>
+                  {this.props.loggedUser &&
+                  <Fragment>
+                      <NavBar/>
+                      <Route path="/new-question" component={NewQuestion}/>
+                      <Route path="/home" render={()=>(
+                          <Home
+                              questions={this.props.questions}
+                              users = {this.props.users}
+                          />
+                      )}/>
+                  </Fragment>
+                  }
+
 
               </div>
           </Router>
