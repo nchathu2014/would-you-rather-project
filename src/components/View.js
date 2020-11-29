@@ -1,39 +1,20 @@
 import React from "react";
 import {Card, Button, Container,Row,Col,Alert,ProgressBar} from "react-bootstrap";
 
-export default function View(){
+export default function View(props){
+    console.log('######### VIEW PAGE: ',props.location.state);
     return(
         <div>
-            <h2>View</h2>
-
-            {/*<Card className="text-center" style={{width:'35%',margin:'10% auto'}}>
-                <Card.Header style={{fontWeight:'bold',fontSize:14}}><strong>Asked By</strong> Tailer</Card.Header>
+            <Card style={{ width: '25rem' , margin:'0 auto'}}>
+                <Card.Img variant="top" src={''} />
                 <Card.Body>
-                    <Container fluid="md">
-                        <Row>
-                            <Col sm={3}>IMAGE</Col>
-                            <Col sm={9}>
-                                <div><h3>Results</h3></div>
-                                <Alert variant="success">
-                                    <p>Option 1</p>
-                                    <ProgressBar variant="success" now={66.7} label={`${66.7}%`} />
-                                    2 out of 3 votes
-                                </Alert>
-                                <Alert variant="secondary">
-                                    <p>Option 2</p>
-                                    <ProgressBar variant="secondary" now={33.3} label={`${33.3}%`} />
-                                    1 out of 3 votes
-                                </Alert>
-
-
-                            </Col>
-
-                        </Row>
-                    </Container>
-                    <Button variant="success">Submit</Button>
+                    <Card.Title>{"View"}</Card.Title>
+                    <Card.Text>
+                        <div>{'Text'}</div>
+                    </Card.Text>
                 </Card.Body>
-            </Card>*/}
-
+            </Card>
+            <Button variant="success">Back</Button>
         </div>
     );
 }

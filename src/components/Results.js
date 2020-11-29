@@ -1,39 +1,41 @@
 import React from "react";
 import {Card, Button, Container,Row,Col,Alert,ProgressBar} from "react-bootstrap";
 
-export default function Results(){
+export default function Results(props){
+
+    const {filteredQuestion,userName,avatarURL} = props.location.state;
+
+    const optionOneVotes = filteredQuestion[0].optionOne.votes.length;
+    const optionTwoVotes = filteredQuestion[0].optionTwo.votes.length;
+    const totalVotes = optionOneVotes + optionTwoVotes;
+
+    const optionOnePercentage = optionOneVotes/totalVotes;
+    const optionTwoPercentage = optionTwoVotes/totalVotes;
+
+    console.log('######### VOTES ',optionOneVotes, optionTwoVotes);
+
     return(
         <div>
-            <h2>Results</h2>
-
-            {/*<Card className="text-center" style={{width:'35%',margin:'10% auto'}}>
-                <Card.Header style={{fontWeight:'bold',fontSize:14}}><strong>Asked By</strong> Tailer</Card.Header>
+            <Card style={{ width: '25rem' , margin:'0 auto'}}>
+                <Card.Header><strong>Asked By</strong> {userName}</Card.Header>
+                <Card.Img variant="top" src={avatarURL} />
                 <Card.Body>
-                    <Container fluid="md">
-                        <Row>
-                            <Col sm={3}>IMAGE</Col>
-                            <Col sm={9}>
-                                <div><h3>Results</h3></div>
-                                <Alert variant="success">
-                                    <p>Option 1</p>
-                                    <ProgressBar variant="success" now={66.7} label={`${66.7}%`} />
-                                    2 out of 3 votes
-                                </Alert>
-                                <Alert variant="secondary">
-                                    <p>Option 2</p>
-                                    <ProgressBar variant="secondary" now={33.3} label={`${33.3}%`} />
-                                    1 out of 3 votes
-                                </Alert>
-
-
-                            </Col>
-
-                        </Row>
-                    </Container>
-                    <Button variant="success">Submit</Button>
+                    <Card.Title>Results</Card.Title>
+                    <Card.Text>
+                        <Alert variant="success">
+                            <p>{filteredQuestion[0].optionOne.text}</p>
+                            <ProgressBar variant="success" now={optionOnePercentage} label={`${optionOnePercentage}%`} />
+                            {optionOneVotes} out of {totalVotes} votes
+                        </Alert>
+                        <Alert variant="secondary">
+                            <p>{filteredQuestion[0].optionTwo.text}</p>
+                            <ProgressBar variant="secondary" now={optionTwoPercentage} label={`${optionTwoPercentage}%`} />
+                            {optionTwoVotes} out of {totalVotes} votes
+                        </Alert>
+                    </Card.Text>
                 </Card.Body>
-            </Card>*/}
-
+            </Card>
+            <Button variant="success">Back</Button>
         </div>
     );
 }

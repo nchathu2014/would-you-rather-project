@@ -18,7 +18,6 @@ class NewQuestion extends Component{
             optionTwoText:this.optionTwo.value
         };
 
-        console.log('!!!!',newQuestion)
         this.props.dispatch(saveNewQuestionToBE(newQuestion));
         this.props.history.push('/home');
     };

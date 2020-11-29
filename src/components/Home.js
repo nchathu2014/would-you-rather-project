@@ -16,22 +16,36 @@ const Home = function Home(props){
         return votes.includes(props.loggedUser) === true
     });
 
+    //console.log('answeredQuestions =>>',answeredQuestions)
+
+
     const unAnsweredQuestions = props.questions.filter(question => {
         const votes = question.optionOne.votes.concat(question.optionTwo.votes);
-        console.log(votes,props.loggedUser,votes.includes(props.loggedUser))
         return votes.includes(props.loggedUser) === false
     });
 
-    const showResults = (e,questionId) => {
+    const showResults = (e,questionId,userName,avatarURL) => {
+
+
+        const filteredQuestion = answeredQuestions.filter(question => question.id === questionId)
+        console.log('filteredQuestion ==>',filteredQuestion)
+
         e.preventDefault();
-        props.history.push(`/questions/${questionId}/results`);
+        props.history.push({
+            pathname:`/questions/${questionId}/results`,
+            state:{filteredQuestion,userName,avatarURL}
+        });
     };
 
-    const showViews = (e,questionId) => {
+    const showViews = (e,questionId,userName) => {
        e.preventDefault();
-       props.history.push(`/questions/${questionId}`);
+       props.history.push({
+           pathname:`/questions/${questionId}`,
+           state:{unAnsweredQuestions,questionId,userName}
+       });
     };
 
+    //ToDo: make a one Card component and reuse in both answered and unanswered cases
         return (
             <div>
                 <Tabs id="uncontrolled-tab-example">
@@ -45,7 +59,7 @@ const Home = function Home(props){
                                             <Card.Title>{question.userInfo.name}</Card.Title>
                                             <Card.Text>
                                                 <div>...{question.optionOne.text}...</div>
-                                                <Button variant="primary" onClick={(e) => showResults(e,question.id)}>View Poll</Button>
+                                                <Button variant="primary" onClick={(e) => showResults(e,question.id,question.userInfo.name,question.userInfo.avatarURL)}>View Poll</Button>
                                             </Card.Text>
 
                                         </Card.Body>
@@ -64,7 +78,7 @@ const Home = function Home(props){
                                             <Card.Title>{question.userInfo.name}</Card.Title>
                                             <Card.Text>
                                                 <div>...{question.optionOne.text}...</div>
-                                                <Button variant="primary" onClick={(e) => showViews(e,question.id)}>View Poll</Button>
+                                                <Button variant="primary" onClick={(e) => showViews(e,question.id,question.userInfo.name)}>View Poll</Button>
                                             </Card.Text>
 
                                         </Card.Body>
