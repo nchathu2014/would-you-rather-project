@@ -13,7 +13,8 @@ import LoadingBar from "react-redux-loading";
 import {connect} from "react-redux";
 import NewQuestion from "./components/NewQuestion";
 import Home from "./components/Home";
-
+import Results from "./components/Results"
+import View from "./components/View"
 
 
 class App extends Component{
@@ -38,12 +39,10 @@ class App extends Component{
                   <Fragment>
                       <NavBar/>
                       <Route path="/new-question" component={NewQuestion}/>
-                      <Route path="/home" render={()=>(
-                          <Home
-                              questions={this.props.questions}
-                              users = {this.props.users}
-                          />
-                      )}/>
+                      <Route path="/home" component={Home}/>
+
+                      <Route  exact path="/questions/:id" component={View}/>
+                      <Route  path="/questions/:id/results" component={Results}/>
                   </Fragment>
                   }
 

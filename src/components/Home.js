@@ -2,6 +2,7 @@ import React from "react";
 import {Tabs,Tab, Card,Button} from "react-bootstrap";
 import connect from "react-redux/es/connect/connect";
 import * as _ from "lodash";
+import {withRouter} from "react-router-dom";
 
 
 
@@ -20,6 +21,17 @@ const Home = function Home(props){
         console.log(votes,props.loggedUser,votes.includes(props.loggedUser))
         return votes.includes(props.loggedUser) === false
     });
+
+    const showResults = (e,questionId) => {
+        e.preventDefault();
+        props.history.push(`/questions/${questionId}/results`);
+    };
+
+    const showViews = (e,questionId) => {
+       e.preventDefault();
+       props.history.push(`/questions/${questionId}`);
+    };
+
         return (
             <div>
                 <Tabs id="uncontrolled-tab-example">
@@ -33,8 +45,9 @@ const Home = function Home(props){
                                             <Card.Title>{question.userInfo.name}</Card.Title>
                                             <Card.Text>
                                                 <div>...{question.optionOne.text}...</div>
+                                                <Button variant="primary" onClick={(e) => showResults(e,question.id)}>View Poll</Button>
                                             </Card.Text>
-                                            <Button variant="primary">View Poll</Button>
+
                                         </Card.Body>
                                     </Card>
                                 </li>
@@ -51,8 +64,9 @@ const Home = function Home(props){
                                             <Card.Title>{question.userInfo.name}</Card.Title>
                                             <Card.Text>
                                                 <div>...{question.optionOne.text}...</div>
+                                                <Button variant="primary" onClick={(e) => showViews(e,question.id)}>View Poll</Button>
                                             </Card.Text>
-                                            <Button variant="primary">View Poll</Button>
+
                                         </Card.Body>
                                     </Card>
                                 </li>
@@ -75,5 +89,5 @@ function mapStateToProps({users,questions,loggedUser}) {
     }
 }
 
-export default connect(mapStateToProps)(Home);
+export default withRouter(connect(mapStateToProps)(Home));
 //export default Home;
