@@ -69,6 +69,7 @@ class View extends Component{
                     </Card.Text>
                     <Button
                         variant="success"
+                        disabled={!this.state.selectOption}
                         onClick={() => this.handleSubmit(filteredQuestion[0],selectOption)}>Submit</Button>
                 </Card.Body>
             </Card>

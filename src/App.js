@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from "./components/NavBar";
 
 
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route,Switch} from "react-router-dom";
 
 import {getUsersFromBE,getQuestionsFromBE} from "./actions/shared"
 import LoadingBar from "react-redux-loading";
@@ -16,6 +16,7 @@ import Home from "./components/Home";
 import Results from "./components/Results"
 import View from "./components/View"
 import LeaderBoard from "./components/LeaderBoard";
+import PageNotFound from "./components/PageNotFound";
 
 
 class App extends Component{
@@ -38,15 +39,19 @@ class App extends Component{
 
                   {this.props.loggedUser &&
                   <Fragment>
+                      <Switch>
+
+                      </Switch>
                       <NavBar/>
-                      <Route path="/new-question" component={NewQuestion}/>
-                      <Route path="/home" component={Home}/>
-                      <Route path="/leader-board" render = {()=>(
+                      <Route exact path="/new-question" component={NewQuestion}/>
+                      <Route exact path="/home" component={Home}/>
+                      <Route exact path="/leader-board" render = {()=>(
                           <LeaderBoard userIds = {this.props.userIds}/>
                       )}/>
 
                       <Route  exact path="/questions/:id" component={View}/>
-                      <Route  path="/questions/:id/results" component={Results}/>
+                      <Route  exact path="/questions/:id/results" component={Results}/>
+                      <Route component={PageNotFound} />
                   </Fragment>
                   }
 

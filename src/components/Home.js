@@ -27,6 +27,12 @@ const Home = function Home(props){
         return votes.includes(props.loggedUser) === false
     });
 
+
+
+    const unAnsweredQuestionsSorted = _.orderBy(unAnsweredQuestions, ['timestamp'],['desc'])
+    console.log('unAnsweredQuestionsSorted==>',unAnsweredQuestionsSorted);
+
+
     const showResults = (e,questionId,userName,avatarURL) => {
 
         e.preventDefault();
@@ -59,13 +65,13 @@ const Home = function Home(props){
                         <ul style={{listStyle:'none',display:"flex", flexWrap:'wrap', justifyContent:'center'}}>
                             {answeredQuestions.map(question=>(
                                 <li>
-                                    <Card style={{ width: '15rem' ,display:'flex'}}>
+                                    <Card style={{ width: '15rem',height: "100%"}}>
                                         <Card.Img variant="top" src={question.userInfo.avatarURL} />
                                         <Card.Body>
                                             <Card.Title>{question.userInfo.name}</Card.Title>
                                             <Card.Text>
-                                                <div style={{fontWeight:'normal'}}>...{question.optionOne.text}...</div>
-                                                <Button style={{width:'90%'}} variant="outline-success" onClick={(e) => showResults(e,question.id,question.userInfo.name,question.userInfo.avatarURL)}>View Poll</Button>
+                                                <div style={{fontWeight:'normal',height:48}}>...{question.optionOne.text}...</div>
+                                                <Button style={{width:'90%',margin:0}} variant="outline-success" onClick={(e) => showResults(e,question.id,question.userInfo.name,question.userInfo.avatarURL)}>View Poll</Button>
                                             </Card.Text>
 
                                         </Card.Body>
@@ -76,15 +82,15 @@ const Home = function Home(props){
                     </Tab>
                     <Tab eventKey="unAnsweredQs" title="Unanswered Questions">
                         <ul style={{listStyle:'none',display:"flex", flexWrap:'wrap', justifyContent:'center'}}>
-                            {unAnsweredQuestions.map(question=>(
+                            {unAnsweredQuestionsSorted.map(question=>(
                                 <li>
-                                    <Card style={{ width: '15rem' ,display:'flex'}}>
+                                    <Card style={{ width: '15rem' ,height: "100%"}}>
                                         <Card.Img variant="top" src={question.userInfo.avatarURL} />
                                         <Card.Body>
                                             <Card.Title>{question.userInfo.name}</Card.Title>
                                             <Card.Text>
-                                                <div style={{fontWeight:'normal'}}>...{question.optionOne.text}...</div>
-                                                <Button style={{width:'90%'}} variant="outline-primary"  onClick={(e) => showViews(e,question.id,question.userInfo.name,question.userInfo.avatarURL)}>View Poll</Button>
+                                                <div style={{fontWeight:'normal',height:48}}>...{question.optionOne.text}...</div>
+                                                <Button style={{width:'90%',margin:0}} variant="outline-primary"  onClick={(e) => showViews(e,question.id,question.userInfo.name,question.userInfo.avatarURL)}>View Poll</Button>
                                             </Card.Text>
 
                                         </Card.Body>
