@@ -1,20 +1,81 @@
-import React from "react";
-import {Card, Button, Container,Row,Col,Alert,ProgressBar} from "react-bootstrap";
+import React,{Component} from "react";
+import {Card, Button, Container, Row, Col, Alert, ProgressBar, Form} from "react-bootstrap";
+import {connect} from "react-redux";
+import {saveNewQuestionToBE, saveQuestionAnswer} from "../actions/shared";
+import {_saveQuestionAnswer} from "../utils/_DATA";
 
-export default function View(props){
-    console.log('######### VIEW PAGE: ',props.location.state);
+class View extends Component{
+   /* console.log('######### VIEW PAGE: ',props.location.state);
+
+    const {filteredQuestion,userName,avatarURL} = props.location.state;
+    const optionOneText = filteredQuestion[0].optionOne.text;
+    const optionTwoText = filteredQuestion[0].optionTwo.text;*/
+
+   state = {
+       selectOption:""
+   };
+
+    handleSelection = (event) => {
+      this.setState({
+          selectOption: event.target.value
+      })
+    };
+
+  handleSubmit = (question,selectOption) => {
+    console.log('handleSubmit() => ',question,selectOption);
+
+
+    this.props.dispatch(saveQuestionAnswer(question,selectOption));
+    this.props.history.push('/home');
+    };
+
+    render(){
+        const {filteredQuestion,userName,avatarURL} = this.props.location.state;
+        const optionOneText = filteredQuestion[0].optionOne.text;
+        const optionTwoText = filteredQuestion[0].optionTwo.text;
+
+        const {author,id} = filteredQuestion[0];
+        const {selectOption} = this.state;
+
+
     return(
         <div>
             <Card style={{ width: '25rem' , margin:'0 auto'}}>
-                <Card.Img variant="top" src={''} />
+                <Card.Header><strong>{userName}</strong> asks</Card.Header>
+                <Card.Img variant="top" src={avatarURL} />
                 <Card.Body>
-                    <Card.Title>{"View"}</Card.Title>
+                    <Card.Title>{"Would You Rather..."}</Card.Title>
                     <Card.Text>
-                        <div>{'Text'}</div>
+                        <Form>
+                            <Form.Check
+                                type={'radio'}
+                                id={`default-radio`}
+                                label={optionOneText}
+                                name={'grp1'}
+                                value={'optionOne'}
+                                onChange={this.handleSelection}
+                            />
+                            <Form.Check
+                                type={'radio'}
+                                id={`default-radio`}
+                                label={optionTwoText}
+                                name={'grp1'}
+                                value={'optionTwo'}
+                                onChange={this.handleSelection}
+                            />
+
+
+                        </Form>
                     </Card.Text>
+                    <Button
+                        variant="success"
+                        onClick={() => this.handleSubmit(filteredQuestion[0],selectOption)}>Submit</Button>
                 </Card.Body>
             </Card>
-            <Button variant="success">Back</Button>
+
         </div>
     );
+     }
 }
+
+export default connect()(View);

@@ -8,7 +8,10 @@ import {withRouter} from "react-router-dom";
 
 const Home = function Home(props){
 
-    props.questions.map(question=> question['userInfo'] = props.users[question.author]);
+    props.questions.map(question=> {
+        console.log('#######question######',question);
+        return question['userInfo'] = props.users[question.author]
+    });
 
 
     const answeredQuestions = props.questions.filter(question => {
@@ -26,22 +29,25 @@ const Home = function Home(props){
 
     const showResults = (e,questionId,userName,avatarURL) => {
 
-
+        e.preventDefault();
         const filteredQuestion = answeredQuestions.filter(question => question.id === questionId)
         console.log('filteredQuestion ==>',filteredQuestion)
 
-        e.preventDefault();
+
         props.history.push({
             pathname:`/questions/${questionId}/results`,
             state:{filteredQuestion,userName,avatarURL}
         });
     };
 
-    const showViews = (e,questionId,userName) => {
+    const showViews = (e,questionId,userName,avatarURL) => {
        e.preventDefault();
-       props.history.push({
+        const filteredQuestion = unAnsweredQuestions.filter(question => question.id === questionId)
+        console.log('filteredQuestion ==>',filteredQuestion)
+
+        props.history.push({
            pathname:`/questions/${questionId}`,
-           state:{unAnsweredQuestions,questionId,userName}
+           state:{filteredQuestion,userName,avatarURL}
        });
     };
 
@@ -78,7 +84,7 @@ const Home = function Home(props){
                                             <Card.Title>{question.userInfo.name}</Card.Title>
                                             <Card.Text>
                                                 <div>...{question.optionOne.text}...</div>
-                                                <Button variant="primary" onClick={(e) => showViews(e,question.id,question.userInfo.name)}>View Poll</Button>
+                                                <Button variant="primary" onClick={(e) => showViews(e,question.id,question.userInfo.name,question.userInfo.avatarURL)}>View Poll</Button>
                                             </Card.Text>
 
                                         </Card.Body>
