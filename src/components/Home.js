@@ -54,8 +54,8 @@ const Home = function Home(props){
     //ToDo: make a one Card component and reuse in both answered and unanswered cases
         return (
             <div>
-                <Tabs id="uncontrolled-tab-example">
-                    <Tab eventKey="answeredQs" title="Answered Questions" defaultactivekey={'answeredQs'}>
+                <Tabs id="uncontrolled-tab-example" defaultActiveKey="unAnsweredQs">
+                    <Tab eventKey="answeredQs" title="Answered Questions">
                         <ul style={{listStyle:'none',display:"flex", flexWrap:'wrap', justifyContent:'center'}}>
                             {answeredQuestions.map(question=>(
                                 <li>

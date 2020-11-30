@@ -19,20 +19,24 @@ const Score = function Score(props){
                 <Card.Body>
                     <Card.Title>
                         <h2>
-                            <Badge variant="secondary"> {`Score: ${score}`}</Badge>
+                            <Badge variant="danger"> {`Score: ${score}`}</Badge>
                         </h2>
                     </Card.Title>
                     <Card.Text>
 
 
-                            <Badge pill variant="success">
-                                Answered Questions: {answeredQuestions.length}
-                            </Badge>
+                            <p>
+                                <Badge pill variant="success" style={{fontSize:16}}>
+                                    Answered Questions: {answeredQuestions.length}
+                                </Badge>
+                            </p>
 
 
-                            <Badge pill variant="warning">
-                                Created Questions: {questions.length}
-                            </Badge>
+                           <p>
+                               <Badge pill variant="warning" style={{fontSize:16}}>
+                                   Created Questions: {questions.length}
+                               </Badge>
+                           </p>
 
 
 
