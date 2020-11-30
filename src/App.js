@@ -15,6 +15,7 @@ import NewQuestion from "./components/NewQuestion";
 import Home from "./components/Home";
 import Results from "./components/Results"
 import View from "./components/View"
+import LeaderBoard from "./components/LeaderBoard";
 
 
 class App extends Component{
@@ -40,6 +41,9 @@ class App extends Component{
                       <NavBar/>
                       <Route path="/new-question" component={NewQuestion}/>
                       <Route path="/home" component={Home}/>
+                      <Route path="/leader-board" render = {()=>(
+                          <LeaderBoard userIds = {this.props.userIds}/>
+                      )}/>
 
                       <Route  exact path="/questions/:id" component={View}/>
                       <Route  path="/questions/:id/results" component={Results}/>
@@ -56,6 +60,7 @@ class App extends Component{
 function mapStateToProps({users,questions,loggedUser}) {
     return{
         users: Object.keys(users).map(userId => users[userId]),
+        userIds: Object.keys(users),
         questions: Object.keys(questions).map(questionId => questions[questionId]),
         loggedUser
     }

@@ -25,3 +25,5 @@ export function updateQuestionAnswer(authedUser, id, option){
         option,
     }
 }
+
+//ToDo: Write a action to clear out the questions reducer, dispatch it with the user logout

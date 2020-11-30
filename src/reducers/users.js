@@ -24,7 +24,7 @@ export function users(state={},action){
                 [action.authedUser]: {
                     ...state[action.authedUser],
                     answers: {
-                        ...state[action.authedUser].option,
+                        ...state[action.authedUser].answers,
                         [action.id]: action.authedUser,
                     },
                 },

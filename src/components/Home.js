@@ -59,13 +59,13 @@ const Home = function Home(props){
                         <ul style={{listStyle:'none',display:"flex", flexWrap:'wrap', justifyContent:'center'}}>
                             {answeredQuestions.map(question=>(
                                 <li>
-                                    <Card style={{ width: '18rem' ,display:'flex'}}>
+                                    <Card style={{ width: '15rem' ,display:'flex'}}>
                                         <Card.Img variant="top" src={question.userInfo.avatarURL} />
                                         <Card.Body>
                                             <Card.Title>{question.userInfo.name}</Card.Title>
                                             <Card.Text>
-                                                <div>...{question.optionOne.text}...</div>
-                                                <Button variant="primary" onClick={(e) => showResults(e,question.id,question.userInfo.name,question.userInfo.avatarURL)}>View Poll</Button>
+                                                <div style={{fontWeight:'normal'}}>...{question.optionOne.text}...</div>
+                                                <Button style={{width:'90%'}} variant="outline-success" onClick={(e) => showResults(e,question.id,question.userInfo.name,question.userInfo.avatarURL)}>View Poll</Button>
                                             </Card.Text>
 
                                         </Card.Body>
@@ -78,13 +78,13 @@ const Home = function Home(props){
                         <ul style={{listStyle:'none',display:"flex", flexWrap:'wrap', justifyContent:'center'}}>
                             {unAnsweredQuestions.map(question=>(
                                 <li>
-                                    <Card style={{ width: '18rem' ,display:'flex'}}>
+                                    <Card style={{ width: '15rem' ,display:'flex'}}>
                                         <Card.Img variant="top" src={question.userInfo.avatarURL} />
                                         <Card.Body>
                                             <Card.Title>{question.userInfo.name}</Card.Title>
                                             <Card.Text>
-                                                <div>...{question.optionOne.text}...</div>
-                                                <Button variant="primary" onClick={(e) => showViews(e,question.id,question.userInfo.name,question.userInfo.avatarURL)}>View Poll</Button>
+                                                <div style={{fontWeight:'normal'}}>...{question.optionOne.text}...</div>
+                                                <Button style={{width:'90%'}} variant="outline-primary"  onClick={(e) => showViews(e,question.id,question.userInfo.name,question.userInfo.avatarURL)}>View Poll</Button>
                                             </Card.Text>
 
                                         </Card.Body>

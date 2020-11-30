@@ -40,7 +40,7 @@ class View extends Component{
 
     return(
         <div>
-            <Card style={{ width: '25rem' , margin:'0 auto'}}>
+            <Card style={{ width: '20rem' , margin:'0 auto'}}>
                 <Card.Header><strong>{userName}</strong> asks</Card.Header>
                 <Card.Img variant="top" src={avatarURL} />
                 <Card.Body>

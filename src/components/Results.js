@@ -10,8 +10,8 @@ const Results = function Results(props){
     const optionTwoVotes = filteredQuestion[0].optionTwo.votes.length;
     const totalVotes = optionOneVotes + optionTwoVotes;
 
-    const optionOnePercentage = optionOneVotes/totalVotes;
-    const optionTwoPercentage = optionTwoVotes/totalVotes;
+    const optionOnePercentage = (optionOneVotes/totalVotes*100).toFixed(1);
+    const optionTwoPercentage = (optionTwoVotes/totalVotes*100).toFixed(1);
 
     console.log('######### VOTES ',optionOneVotes, optionTwoVotes);
 
@@ -21,7 +21,7 @@ const Results = function Results(props){
 
     return(
         <div>
-            <Card style={{ width: '25rem' , margin:'0 auto'}}>
+            <Card style={{ width: '15rem' , margin:'0 auto'}}>
                 <Card.Header><strong>Asked By</strong> {userName}</Card.Header>
                 <Card.Img variant="top" src={avatarURL} />
                 <Card.Body>
