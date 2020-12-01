@@ -7,56 +7,54 @@ import { NavLink,withRouter } from 'react-router-dom'
 
 function NavBar(props){
 
-    const {loggedUser} = props;
 
     const handleLogout = () => {
         props.dispatch(removeLoggedUserToStore());
-        props.history.push(`/`)
+        props.history.push(`/login`)
     };
 
     return(
+
         <nav className="nav">
+            {props.loggedUser !== null &&
             <ul>
                 <li>
                     <NavLink
                         exact
-                        to={loggedUser !== null ? "/home" : "/"}
-                        activeClassName={loggedUser !== null?"active":"select"}>
+                        to={props.loggedUser !== null ? "/dashboard" : "/"}
+                        activeClassName={props.loggedUser !== null?"active":"select"}>
                         Home
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to={loggedUser !== null ? "/new-question" : "/"}
-                        activeClassName={loggedUser !== null?"active":"select"}>
+                        to={props.loggedUser !== null ? "/new-question" : "/"}
+                        activeClassName={props.loggedUser !== null?"active":"select"}>
                         New Question
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to={loggedUser !== null ? "/leader-board" : "/"}
-                        activeClassName={loggedUser !== null?"active":"select"}>
+                        to={props.loggedUser !== null ? "/leader-board" : "/"}
+                        activeClassName={props.loggedUser !== null?"active":"select"}>
                         Leader Board
                     </NavLink>
                 </li>
 
-                {loggedUser !== null &&
+                {props.loggedUser !== null &&
                 <li>
-                    <strong>Signed in as: </strong> {loggedUser}
+                    <strong>Signed in as: </strong> {props.loggedUser}
                     <Button  style={{marginLeft:10}} variant="outline-success" onClick={handleLogout}>Logout</Button>
 
                 </li>
                 }
 
             </ul>
+            }
         </nav>
     );
 }
 
-function mapStateToProps({loggedUser}) {
-    return{
-        loggedUser
-    }
-}
 
-export default withRouter(connect(mapStateToProps,null)(NavBar));
+export default withRouter(connect()(NavBar));
+

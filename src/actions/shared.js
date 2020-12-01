@@ -35,7 +35,7 @@ export function saveNewQuestionToBE(newQuestion){
         return _saveQuestion(newQuestion)
             .then((question)=>{
                 dispatch(addNewQuestionToStore(question))
-                dispatch(updateUserQuestions(getState().loggedUser,question.id))
+                dispatch(updateUserQuestions(getState().loggedUser.id,question.id))
             })
             .then(()=>{
                 dispatch(hideLoading())
@@ -50,7 +50,7 @@ export function saveQuestionAnswer(question,selectOption){
         //dispatch(showLoading());
 
         const test = {
-            authedUser:getState().loggedUser,
+            authedUser:getState().loggedUser.id,
             qid:question.id,
             answer:selectOption,
 
@@ -59,8 +59,8 @@ export function saveQuestionAnswer(question,selectOption){
 
         return _saveQuestionAnswer({...test})
             .then(()=>{
-                dispatch(updateUserAnswer(getState().loggedUser, question.id, selectOption))
-                dispatch(updateQuestionAnswer(getState().loggedUser, question.id, selectOption))
+                dispatch(updateUserAnswer(getState().loggedUser.id, question.id, selectOption))
+                dispatch(updateQuestionAnswer(getState().loggedUser.id, question.id, selectOption))
             })
 
     }

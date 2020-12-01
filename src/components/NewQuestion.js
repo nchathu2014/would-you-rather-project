@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import {Card, Button, Form} from "react-bootstrap";
-import {saveNewQuestionToBE} from "../actions/shared";
+import {getQuestionsFromBE, getUsersFromBE, saveNewQuestionToBE} from "../actions/shared";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {Redirect} from "react-router-dom";
@@ -9,17 +9,22 @@ import {Redirect} from "react-router-dom";
 
 class NewQuestion extends Component{
 
+    componentDidMount() {
+
+        this.props.dispatch(getQuestionsFromBE());
+    }
+
      handleSubmit = () => {
          const {loggedUser} = this.props;
-
+        console.log(this.props);
         const newQuestion = {
-            author:loggedUser,
+            author:loggedUser.id,
             optionOneText:this.optionOne.value,
             optionTwoText:this.optionTwo.value
         };
 
         this.props.dispatch(saveNewQuestionToBE(newQuestion));
-        this.props.history.push('/home');
+        this.props.history.push('/dashboard');
     };
     render() {
 

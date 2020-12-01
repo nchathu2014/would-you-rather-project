@@ -12,7 +12,7 @@ import {getUsersFromBE,getQuestionsFromBE} from "./actions/shared"
 import LoadingBar from "react-redux-loading";
 import {connect} from "react-redux";
 import NewQuestion from "./components/NewQuestion";
-import Home from "./components/Home";
+import Dashboard from "./components/Dashboard";
 import Results from "./components/Results"
 import View from "./components/View"
 import LeaderBoard from "./components/LeaderBoard";
@@ -23,28 +23,22 @@ class App extends Component{
 
     componentDidMount() {
         this.props.dispatch(getUsersFromBE());
-        this.props.dispatch(getQuestionsFromBE());
+        //this.props.dispatch(getQuestionsFromBE());
     }
 
     render() {
       return (
           <Router>
-              <div className="App">
 
+              <Fragment>
+                {/*  <NavBar  loggedUser = {this.props.loggedUser.id}/>
                   <LoadingBar style={{ backgroundColor: '#28a745', height: '5px' }} />
+*/}
+                  <Switch>
 
-                  <Route exact path="/" render={()=>(
-                      <Login users={this.props.users}/>
-                  )}/>
-
-                  {this.props.loggedUser &&
-                  <Fragment>
-                      <Switch>
-
-                      </Switch>
-                      <NavBar/>
+                      <Route exact path="/login" component={Login}/>
                       <Route exact path="/new-question" component={NewQuestion}/>
-                      <Route exact path="/home" component={Home}/>
+                      <Route exact path="/dashboard" component={Dashboard}/>
                       <Route exact path="/leader-board" render = {()=>(
                           <LeaderBoard userIds = {this.props.userIds}/>
                       )}/>
@@ -52,22 +46,23 @@ class App extends Component{
                       <Route  exact path="/questions/:id" component={View}/>
                       <Route  exact path="/questions/:id/results" component={Results}/>
                       <Route component={PageNotFound} />
-                  </Fragment>
-                  }
-
-
-              </div>
+                  </Switch>
+              </Fragment>
           </Router>
       );
   }
 }
 
 function mapStateToProps({users,questions,loggedUser}) {
+
+    console.log('loggedUser',loggedUser)
     return{
-        users: Object.keys(users).map(userId => users[userId]),
+        loggedUser,
+        userIds: Object.keys(users)
+        /*users: Object.keys(users).map(userId => users[userId]),
         userIds: Object.keys(users),
         questions: Object.keys(questions).map(questionId => questions[questionId]),
-        loggedUser
+        loggedUser*/
     }
 }
 
