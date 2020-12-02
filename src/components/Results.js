@@ -39,21 +39,22 @@ const Results = function Results(props){
 
 
 
-            <Card style={{ width: '35rem' , margin:'40px auto'}}>
-                <Card.Header><strong>Asked By</strong> {userName}</Card.Header>
+            <Card style={{ width: '44rem' , margin:'50px auto'}}>
+                <Card.Header><strong>Asked By</strong> {userName}
+                    <Link to="/dashboard" style={{float:'right'}}>[Back]</Link>
+                </Card.Header>
                 <Container>
                     <Row>
                         <Col sm={5}>
                             <Card.Img variant="top" src={avatarURL} />
-                            <Link to="/dashboard">[Back]</Link>
                             {/*<Button variant="success" style={{width:'50%'}} onClick={handleBack}>Back</Button>*/}
                         </Col>
                         <Col sm={7}>
-                            <Card.Body>
+                            <Card.Body style={{padding:0}}>
                                 <Card.Title>Results</Card.Title>
                                 <Card.Text>
                                     <Alert variant="info">
-                                        <Badge pill variant="warning" style={{fontSize:16}}>
+                                        <Badge pill variant="warning" style={{fontSize:16,float:'right'}}>
                                             {isUserSelectOptionOne?"Voted":null}
                                         </Badge>
 
@@ -62,7 +63,7 @@ const Results = function Results(props){
                                         {optionOneVotes} out of {totalVotes} votes
                                     </Alert>
                                     <Alert variant="danger">
-                                        <Badge pill variant="warning" style={{fontSize:16}}>
+                                        <Badge pill variant="warning" style={{fontSize:16,float:'right'}}>
                                             {!isUserSelectOptionOne?"Voted":null}
                                         </Badge>
                                         <p>{filteredQuestion[0].optionTwo.text}</p>
