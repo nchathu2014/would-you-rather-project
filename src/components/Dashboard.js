@@ -67,7 +67,7 @@ class Dashboard extends Component{
                     <Tab eventKey="answeredQs" title="Answered Questions" style={{marginTop:30}}>
                         <ul style={{listStyle:'none',display:"flex", flexWrap:'wrap', justifyContent:'center'}}>
                             {answeredQuestions.map(question=>(
-                                <li>
+                                <li key={question.id}>
                                     <Card style={{ width: '15rem',height: "100%",textAlign:'center'}} >
                                         <Card.Img variant="top" src={question.userInfo.avatarURL} />
                                         <Card.Body style={{background: question.author === loggedUser.id?'#D5F5E3':'#fff'}}>
@@ -86,7 +86,7 @@ class Dashboard extends Component{
                     <Tab eventKey="unAnsweredQs" title="Unanswered Questions" style={{marginTop:30}}>
                         <ul style={{listStyle:'none',display:"flex", flexWrap:'wrap', justifyContent:'center'}}>
                             {unAnsweredQuestionsSorted.map(question=>(
-                                <li>
+                                <li key={question.id}>
                                     <Card style={{ width: '15rem' ,height: "100%",textAlign:'center'}}>
                                         <Card.Img variant="top" src={question.userInfo.avatarURL} />
                                         <Card.Body style={{background: question.author === loggedUser.id?'#D5F5E3':'#fff'}}>

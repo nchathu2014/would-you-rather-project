@@ -4,6 +4,7 @@ import {getQuestionsFromBE, getUsersFromBE, saveNewQuestionToBE} from "../action
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {Redirect} from "react-router-dom";
+import questionImg from "../assets/images/question.png";
 
 
 
@@ -29,25 +30,29 @@ class NewQuestion extends Component{
     render() {
 
         return(
-            <Card className="text-center" style={{width:'40%',margin:'10% auto'}}>
-                <Card.Header style={{fontWeight:'bold',fontSize:25}}> Create New Question </Card.Header>
+            <Card className="text-center" style={{width:'35%',margin:'30px auto'}}>
+                <Card.Header style={{fontWeight:'bold',fontSize:18}}> Create New Question </Card.Header>
+                <Card.Img variant="top" src={questionImg} style={{width: '20%', margin: '10px auto'}}/>
                 <Card.Body>
-                    <Card.Title>Complete the question:</Card.Title>
-                    <Card.Title>Would you rather...</Card.Title>
+                    <Card.Title style={{fontSize:16}}>
+                        <div>Complete the question:</div>
+                        <div><b>Would you rather...</b></div>
+                    </Card.Title>
+
                     <Card.Text>
                         <Form>
                             <Form.Control
                                 type="text"
                                 ref = {(value)=> this.optionOne = value}
                                 placeholder="Enter Option One Text Here" />
-                            OR
+                            <div style={{margin:'10px 0'}}>OR</div>
                             <Form.Control
                                 type="text"
                                 ref = {(value)=> this.optionTwo = value}
                                 placeholder="Enter Option Two Text Here" />
                         </Form>
                     </Card.Text>
-                    <Button variant="success" onClick={this.handleSubmit}>Submit</Button>
+                    <Button variant="dark" onClick={this.handleSubmit}>Submit</Button>
                 </Card.Body>
             </Card>
         );

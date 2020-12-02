@@ -17,6 +17,7 @@ import Results from "./components/Results"
 import View from "./components/View"
 import LeaderBoard from "./components/LeaderBoard";
 import PageNotFound from "./components/PageNotFound";
+import * as _ from "lodash";
 
 
 class App extends Component{
@@ -54,7 +55,9 @@ class App extends Component{
 
 function mapStateToProps({users,questions,loggedUser}) {
 
-    console.log('###############loggedUser',loggedUser)
+    console.log('###############users',users)
+    //_.orderBy(users, ['timestamp'],['desc']);
+    console.log('########### ORDERED',)
     return{
         loggedUser,
         userIds: Object.keys(users),
