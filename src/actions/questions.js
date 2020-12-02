@@ -1,6 +1,9 @@
+import {REMOVE_LOGGED_USER_FROM_STORE} from "./loggedUser";
+
 export const ADD_QUESTIONS_TO_STORE = "ADD_QUESTIONS_TO_STORE";
 export const ADD_NEW_QUESTIONS_TO_STORE = "ADD_NEW_QUESTIONS_TO_STORE";
 export const UPDATE_QUESTION_ANSWER = "UPDATE_QUESTION_ANSWER";
+export const REMOVE_QUESTIONS_FROM_STORE = "REMOVE_QUESTIONS_FROM_STORE";
 
 export function addQuestionsToStore(questions){
     return{
@@ -26,4 +29,8 @@ export function updateQuestionAnswer(authedUser, id, option){
     }
 }
 
-//ToDo: Write a action to clear out the questions reducer, dispatch it with the user logout
+export function removeQuestionsFromStore(){
+    return{
+        type: REMOVE_QUESTIONS_FROM_STORE,
+    }
+}

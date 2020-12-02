@@ -1,11 +1,18 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {Card, Button, Container, Row, Col, Alert, ProgressBar, Form} from "react-bootstrap";
 import {withRouter,Link} from "react-router-dom";
 import {connect} from "react-redux";
 import Badge from "react-bootstrap/Badge";
+import Redirect from "react-router-dom/es/Redirect";
 
 
 const Results = function Results(props){
+
+
+    //console.log('@@this.props.loggedUser@@@@@',props.loggedUser)
+    if(props.loggedUser === null){return <Redirect to="/login"/>}
+
+    //if(id === null){return <Redirect to="/login"/>}
 
     const {filteredQuestion,userName,avatarURL} = props.location.state;
 
@@ -19,11 +26,13 @@ const Results = function Results(props){
 
 
     const isUserSelectOptionOne = filteredQuestion[0].optionOne.votes.includes(props.loggedUser.id)
-    console.log('######### isUserSelectOptionOne ',isUserSelectOptionOne);
+
 
     const handleBack = () => {
       props.history.push('/dashboard')
     };
+
+
 
     return(
         <div>

@@ -3,7 +3,8 @@ import {Card, Button, Container, Row, Col, Alert, ProgressBar, Form} from "react
 import {connect} from "react-redux";
 import {saveNewQuestionToBE, saveQuestionAnswer} from "../actions/shared";
 import {_saveQuestionAnswer} from "../utils/_DATA";
-import {Link} from "react-router-dom";
+import {Link,Redirect} from "react-router-dom";
+
 
 class View extends Component{
    /* console.log('######### VIEW PAGE: ',props.location.state);
@@ -31,12 +32,19 @@ class View extends Component{
     };
 
     render(){
+
+       if(this.props.loggedUser === null){return <Redirect to="/login"/>}
+
         const {filteredQuestion,userName,avatarURL} = this.props.location.state;
         const optionOneText = filteredQuestion[0].optionOne.text;
         const optionTwoText = filteredQuestion[0].optionTwo.text;
 
         const {author,id} = filteredQuestion[0];
         const {selectOption} = this.state;
+
+
+
+
 
 
     return(
@@ -92,4 +100,10 @@ class View extends Component{
      }
 }
 
-export default connect()(View);
+function mapStateToProps({loggedUser}){
+    return{
+        loggedUser
+    }
+}
+
+export default connect(mapStateToProps)(View);

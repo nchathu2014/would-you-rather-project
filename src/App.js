@@ -32,8 +32,9 @@ class App extends Component{
           <Router>
 
               <Fragment>
-                  <LoadingBar style={{ backgroundColor: '#28a745', height: '5px' }} />
+
                   {this.props.loggedUser && <NavBar loggedUser = {this.props.loggedUser}/>}
+                  <LoadingBar style={{ backgroundColor: '#FFC107', height: '5px' }} />
                   <Switch>
 
                       <Route exact path="/login" component={Login}/>
@@ -61,7 +62,6 @@ function mapStateToProps({users,questions,loggedUser}) {
     return{
         loggedUser,
         userIds: Object.keys(users),
-        loading: loggedUser === null
         /*users: Object.keys(users).map(userId => users[userId]),
         userIds: Object.keys(users),
         questions: Object.keys(questions).map(questionId => questions[questionId]),

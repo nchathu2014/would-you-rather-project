@@ -47,7 +47,7 @@ export function saveQuestionAnswer(question,selectOption){
 
     return (dispatch,getState)=>{
 
-        //dispatch(showLoading());
+        dispatch(showLoading());
 
         const saveQuestionAnsContract = {
             authedUser:getState().loggedUser.id,
@@ -61,6 +61,9 @@ export function saveQuestionAnswer(question,selectOption){
             .then(()=>{
                 dispatch(updateUserAnswer(getState().loggedUser.id, question.id, selectOption))
                 dispatch(updateQuestionAnswer(getState().loggedUser.id, question.id, selectOption))
+            })
+            .then(()=>{
+                dispatch(hideLoading());
             })
 
     }

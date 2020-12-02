@@ -1,7 +1,8 @@
 import {
     ADD_NEW_QUESTIONS_TO_STORE,
-    ADD_QUESTIONS_TO_STORE,
-    UPDATE_QUESTION_ANSWER} from "../actions/questions";
+    ADD_QUESTIONS_TO_STORE, REMOVE_QUESTIONS_FROM_STORE,
+    UPDATE_QUESTION_ANSWER
+} from "../actions/questions";
 
 export function questions(state = {},action){
 
@@ -35,6 +36,8 @@ export function questions(state = {},action){
                 },
             };
 
+        case REMOVE_QUESTIONS_FROM_STORE:
+            return {};
         default:
             return state;
     }

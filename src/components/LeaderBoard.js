@@ -7,10 +7,16 @@ import Badge from "react-bootstrap/Badge";
 import gold_cup  from "./../assets/images/gold_cup.png";
 import silver_cup  from "./../assets/images/silver_cup.png";
 import bronze_cup  from "./../assets/images/bronze_cup.png";
+import {Redirect} from "react-router";
 
 
 class LeaderBoard extends Component{
    render() {
+
+       //console.log('@@this.props.loggedUser@@@@@',props.loggedUser)
+       if(this.props.loggedUser === null){return <Redirect to="/login"/>}
+
+
        const medals = [gold_cup,silver_cup,bronze_cup];
        return(
            <ul style={{display:'flex',flexWrap:'wrap', justifyContent:'center',margin:'30px auto'}}>
@@ -54,7 +60,7 @@ class LeaderBoard extends Component{
    }
 }
 
-function mapStateToProps({users}){
+function mapStateToProps({users,loggedUser}){
 
     const usersList = Object.keys(users).map(userId => users[userId]);
     usersList.map(user=>{
@@ -68,6 +74,7 @@ function mapStateToProps({users}){
 
 
     return{
+        loggedUser,
         users:_.orderBy(usersList, ['score'],['desc'])
     }
 }
