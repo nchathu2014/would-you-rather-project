@@ -16,41 +16,39 @@ function NavBar(props){
     return(
 
         <nav className="nav">
-            {props.loggedUser !== null &&
-            <ul>
+           <ul>
                 <li>
                     <NavLink
                         exact
-                        to={props.loggedUser !== null ? "/dashboard" : "/"}
-                        activeClassName={props.loggedUser !== null?"active":"select"}>
+                        to={"/dashboard"}
+                        activeClassName>
                         Home
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to={props.loggedUser !== null ? "/new-question" : "/"}
-                        activeClassName={props.loggedUser !== null?"active":"select"}>
+                        to={"/new-question"}
+                        activeClassName>
                         New Question
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to={props.loggedUser !== null ? "/leader-board" : "/"}
-                        activeClassName={props.loggedUser !== null?"active":"select"}>
+                        to={"/leader-board"}
+                        activeClassName>
                         Leader Board
                     </NavLink>
                 </li>
 
-                {props.loggedUser !== null &&
+
                 <li>
-                    <strong>Signed in as: </strong> {props.loggedUser}
+                    <strong>Signed in as: </strong> {props.loggedUser.name}
                     <Button  style={{marginLeft:10}} variant="outline-success" onClick={handleLogout}>Logout</Button>
 
                 </li>
-                }
+
 
             </ul>
-            }
         </nav>
     );
 }

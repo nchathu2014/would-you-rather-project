@@ -49,15 +49,15 @@ export function saveQuestionAnswer(question,selectOption){
 
         //dispatch(showLoading());
 
-        const test = {
+        const saveQuestionAnsContract = {
             authedUser:getState().loggedUser.id,
             qid:question.id,
             answer:selectOption,
 
         }
-        console.log('######## test ##########',test)
 
-        return _saveQuestionAnswer({...test})
+
+        return _saveQuestionAnswer({...saveQuestionAnsContract})
             .then(()=>{
                 dispatch(updateUserAnswer(getState().loggedUser.id, question.id, selectOption))
                 dispatch(updateQuestionAnswer(getState().loggedUser.id, question.id, selectOption))

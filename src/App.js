@@ -31,9 +31,9 @@ class App extends Component{
           <Router>
 
               <Fragment>
-                {/*  <NavBar  loggedUser = {this.props.loggedUser.id}/>
+                  {this.props.loggedUser && <NavBar loggedUser = {this.props.loggedUser}/>}
                   <LoadingBar style={{ backgroundColor: '#28a745', height: '5px' }} />
-*/}
+
                   <Switch>
 
                       <Route exact path="/login" component={Login}/>
@@ -55,10 +55,11 @@ class App extends Component{
 
 function mapStateToProps({users,questions,loggedUser}) {
 
-    console.log('loggedUser',loggedUser)
+    console.log('###############loggedUser',loggedUser)
     return{
         loggedUser,
-        userIds: Object.keys(users)
+        userIds: Object.keys(users),
+        loading: loggedUser === null
         /*users: Object.keys(users).map(userId => users[userId]),
         userIds: Object.keys(users),
         questions: Object.keys(questions).map(questionId => questions[questionId]),
