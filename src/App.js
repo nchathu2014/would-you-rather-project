@@ -31,9 +31,8 @@ class App extends Component{
           <Router>
 
               <Fragment>
-                  {this.props.loggedUser && <NavBar loggedUser = {this.props.loggedUser}/>}
                   <LoadingBar style={{ backgroundColor: '#28a745', height: '5px' }} />
-
+                  {this.props.loggedUser && <NavBar loggedUser = {this.props.loggedUser}/>}
                   <Switch>
 
                       <Route exact path="/login" component={Login}/>

@@ -33,7 +33,7 @@ class Login extends Component{
         return(
             <div>
                 <Card className="text-center" style={{width:'35%',margin:'5% auto'}}>
-                    <Card.Header style={{background:'#7748C0',color:'#fff'}}>
+                    <Card.Header style={{background:'#89608E',color:'#fff'}}>
                         <div style={{fontWeight:'bold',fontSize:18}}>
                             Welcome to the Would You Rather App!!!
                         </div>
@@ -63,7 +63,7 @@ class Login extends Component{
                         {this.state.selectedUser !== null &&
                         <Button
                             variant="success"
-                            style={{width:'100%',margin:0,background:'#7748C0',borderColor:'#7748C0'}}
+                            style={{width:'100%',margin:0,background:'#89608E',borderColor:'#89608E'}}
                             disabled={this.state.selectedUser === null}
                             onClick={this.handleUserLogin}>Sign In</Button>
                         }
@@ -71,7 +71,7 @@ class Login extends Component{
 
                     </Card.Body>
 
-                    <Card.Footer style={{background:'#7748C0',color:'#fff',fontSize:14}}>
+                    <Card.Footer style={{background:'#89608E',color:'#fff',fontSize:14}}>
                         &copy; Copyright 2020: {' '}
                         <a href="https://www.linkedin.com/in/nchathu/" target="_blank" style={{color:'#fff'}}>[Find Me]</a>
                     </Card.Footer>

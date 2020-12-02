@@ -62,16 +62,15 @@ class Dashboard extends Component{
 
 
             return (
-            <div>
-                <h1>Home</h1>
+            <div style={{margin:"5px 0"}}>
                <Tabs id="uncontrolled-tab-example" defaultActiveKey="unAnsweredQs">
-                    <Tab eventKey="answeredQs" title="Answered Questions">
+                    <Tab eventKey="answeredQs" title="Answered Questions" style={{marginTop:30}}>
                         <ul style={{listStyle:'none',display:"flex", flexWrap:'wrap', justifyContent:'center'}}>
                             {answeredQuestions.map(question=>(
                                 <li>
-                                    <Card style={{ width: '15rem',height: "100%",textAlign:'center'}}>
+                                    <Card style={{ width: '15rem',height: "100%",textAlign:'center'}} >
                                         <Card.Img variant="top" src={question.userInfo.avatarURL} />
-                                        <Card.Body>
+                                        <Card.Body style={{background: question.author === loggedUser.id?'#D5F5E3':'#fff'}}>
                                             <Card.Title>{question.userInfo.name}</Card.Title>
                                             <Card.Text>
                                                 <div style={{fontWeight:'normal',height:48}}>...{question.optionOne.text}...</div>
@@ -84,13 +83,13 @@ class Dashboard extends Component{
                             ))}
                         </ul>
                     </Tab>
-                    <Tab eventKey="unAnsweredQs" title="Unanswered Questions">
+                    <Tab eventKey="unAnsweredQs" title="Unanswered Questions" style={{marginTop:30}}>
                         <ul style={{listStyle:'none',display:"flex", flexWrap:'wrap', justifyContent:'center'}}>
                             {unAnsweredQuestionsSorted.map(question=>(
                                 <li>
                                     <Card style={{ width: '15rem' ,height: "100%",textAlign:'center'}}>
                                         <Card.Img variant="top" src={question.userInfo.avatarURL} />
-                                        <Card.Body>
+                                        <Card.Body style={{background: question.author === loggedUser.id?'#D5F5E3':'#fff'}}>
                                             <Card.Title>{question.userInfo.name}</Card.Title>
                                             <Card.Text>
                                                 <div style={{fontWeight:'normal',height:48}}>...{question.optionOne.text}...</div>
