@@ -49,7 +49,6 @@ class View extends Component {
                             <Col sm={7}>
                                 <Card.Body style={{padding: 0}}>
                                     <Card.Title>{"Would You Rather..."}</Card.Title>
-                                    <Card.Text>
                                         <Form>
                                             <Form.Check
                                                 type={'radio'}
@@ -68,7 +67,6 @@ class View extends Component {
                                                 onChange={this.handleSelection}
                                             />
                                         </Form>
-                                    </Card.Text>
                                     <Button
                                         variant="outline-dark"
                                         disabled={!this.state.selectOption}

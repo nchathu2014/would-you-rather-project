@@ -76,11 +76,10 @@ class Dashboard extends Component {
                                             <div
                                                 style={{fontWeight: 'normal', height: 48}}>...{question.optionOne.text}...
                                             </div>
-                                            <Button style={{width: '90%', margin: 0}} variant="outline-dark"
-                                                    onClick={(e) => showResults(e, question.id, question.userInfo.name, question.userInfo.avatarURL)}>View
-                                                Poll</Button>
                                         </Card.Text>
-
+                                        <Button style={{width: '90%', margin: 0}} variant="outline-dark"
+                                                onClick={(e) => showResults(e, question.id, question.userInfo.name, question.userInfo.avatarURL)}>View
+                                            Poll</Button>
                                     </Card.Body>
                                 </Card>
                             </li>
@@ -100,10 +99,10 @@ class Dashboard extends Component {
                                             <div
                                                 style={{fontWeight: 'normal', height: 48}}>...{question.optionOne.text}...
                                             </div>
-                                            <Button style={{width: '90%', margin: 0}} variant="outline-dark"
-                                                    onClick={(e) => showViews(e, question.id, question.userInfo.name, question.userInfo.avatarURL)}>View
-                                                Poll</Button>
                                         </Card.Text>
+                                        <Button style={{width: '90%', margin: 0}} variant="outline-dark"
+                                                onClick={(e) => showViews(e, question.id, question.userInfo.name, question.userInfo.avatarURL)}>View
+                                            Poll</Button>
                                     </Card.Body>
                                 </Card>
                             </li>
