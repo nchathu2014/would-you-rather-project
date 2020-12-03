@@ -13,29 +13,24 @@ class Login extends Component {
     };
 
     handleLoginUserSelect = (e) => {
-
         const {users} = this.props;
         this.setState({
-            selectedUser: e.target.value === "-1" ? "-1":users[e.target.value]
+            selectedUser: e.target.value === "-1" ? "-1" : users[e.target.value]
         });
     };
 
     handleUserLogin = () => {
         const {selectedUser} = this.state;
-        console.log(selectedUser)
-
-        if(selectedUser !== "-1"){
+        if (selectedUser !== "-1") {
             this.props.dispatch(addLoggedUserToStore(selectedUser));
             this.props.history.push({
                 pathname: '/dashboard',
                 state: {from: 'home'}
             })
         }
-
     };
 
     render() {
-
         return (
             <Card className="text-center" style={{width: '30%', margin: '5% auto'}}>
                 <Card.Header style={{background: '#343A40', color: '#fff'}}>
@@ -49,26 +44,23 @@ class Login extends Component {
                 <Card.Body>
                     <Card.Title>{"Sign In"}</Card.Title>
                     <Card.Text>
+                        <Form.Control as="select" onChange={(e) => this.handleLoginUserSelect(e)}>
+                            <option value="-1">--- Select User ---</option>
+                            {this.props.userIds.length > 0 &&
+                            this.props.userIds.map(userId => (
+                                <option key={userId} value={userId}>
+                                    {this.props.users[userId].name}
+                                </option>
+                            ))
+                            }
+                        </Form.Control>
 
-                        <Form.Group controlId="exampleForm.ControlSelect1">
-                            <Form.Control as="select" onChange={(e) => this.handleLoginUserSelect(e)}>
-                                <option value="-1">--- Select User ---</option>
-                                {this.props.userIds.length > 0 &&
-                                this.props.userIds.map(userId => (
-                                    <option key={userId} value={userId}>
-                                        {this.props.users[userId].name}
-                                    </option>
-                                ))
-                                }
-                            </Form.Control>
-                        </Form.Group>
 
                     </Card.Text>
                     {(this.state.selectedUser !== null && this.state.selectedUser !== "-1") &&
                     <Button
                         variant="outline-dark"
                         style={{margin: 0, width: '100%'}}
-                        disabled={this.state.selectedUser === "-1"}
                         onClick={this.handleUserLogin}>Sign In</Button>
                     }
                 </Card.Body>

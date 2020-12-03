@@ -35,8 +35,6 @@ class View extends Component {
         const {selectOption} = this.state;
 
         return (
-            <div>
-
                 <Card style={{width: '35rem', margin: '40px auto'}}>
                     <Card.Header><strong>{userName}</strong> asks
                         <Link to={{pathname: '/dashboard', state: {from: 'view-only'}}}
@@ -80,8 +78,6 @@ class View extends Component {
                         </Row>
                     </Container>
                 </Card>
-
-            </div>
         );
     }
 }

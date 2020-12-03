@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Login from "./components/Login";
 import React, {Component, Fragment} from "react";
@@ -8,7 +7,7 @@ import NavBar from "./components/NavBar";
 
 import {BrowserRouter as Router, Route,Switch} from "react-router-dom";
 
-import {getUsersFromBE,getQuestionsFromBE} from "./actions/shared"
+import {getUsersFromBE} from "./actions/shared"
 import LoadingBar from "react-redux-loading";
 import {connect} from "react-redux";
 import NewQuestion from "./components/NewQuestion";
@@ -18,8 +17,6 @@ import View from "./components/View"
 import LeaderBoard from "./components/LeaderBoard";
 import PageNotFound from "./components/PageNotFound";
 import Logout from "./components/Logout";
-import * as _ from "lodash";
-
 
 class App extends Component{
 
@@ -33,7 +30,6 @@ class App extends Component{
               {this.props.loggedUser && <NavBar loggedUser = {this.props.loggedUser}/>}
               <LoadingBar style={{ backgroundColor: '#FFC107', height: '5px' }} />
               <Fragment>
-
                   <Switch>
                       <Route exact path="/" component={Login}/>
                       <Route exact path="/add" component={NewQuestion}/>

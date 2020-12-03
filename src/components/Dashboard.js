@@ -104,7 +104,6 @@ class Dashboard extends Component {
                                                     onClick={(e) => showViews(e, question.id, question.userInfo.name, question.userInfo.avatarURL)}>View
                                                 Poll</Button>
                                         </Card.Text>
-
                                     </Card.Body>
                                 </Card>
                             </li>
@@ -113,8 +112,6 @@ class Dashboard extends Component {
                 </Tab>
             </Tabs>
         );
-
-
     }
 };
 
