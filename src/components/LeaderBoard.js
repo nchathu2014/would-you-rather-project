@@ -21,7 +21,7 @@ class LeaderBoard extends Component {
             <ul style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', margin: '30px auto'}}>
                 {this.props.users.map((user, index) => (
                     <li key={user.id}>
-                        <Card style={{width: '15rem'}}>
+                        <Card style={{width: '16rem'}}>
                             <Card.Header style={{textAlign: 'center'}}><strong>{user.name}</strong></Card.Header>
                             <Card.Img variant="top" src={user.avatarURL}/>
                             <Card.Body>
