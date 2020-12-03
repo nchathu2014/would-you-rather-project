@@ -30,7 +30,6 @@ state={
 
      handleSubmit = () => {
          const {loggedUser} = this.props;
-        console.log(this.props);
         const newQuestion = {
             author:loggedUser.id,
             optionOneText:this.state.optionOne,
@@ -38,7 +37,10 @@ state={
         };
 
         this.props.dispatch(saveNewQuestionToBE(newQuestion));
-        this.props.history.push('/dashboard');
+        this.props.history.push({
+            pathname:'/dashboard',
+            state:{from:'newquestion'}
+        });
     };
     render() {
         const {loggedUser} = this.props;

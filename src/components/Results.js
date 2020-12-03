@@ -41,7 +41,7 @@ const Results = function Results(props){
 
             <Card style={{ width: '44rem' , margin:'50px auto'}}>
                 <Card.Header><strong>Asked By</strong> {userName}
-                    <Link to="/dashboard" style={{float:'right'}}>[Back]</Link>
+                    <Link to={{pathname:"/dashboard",state:{from:'results'}}} style={{float:'right'}}>[Back]</Link>
                 </Card.Header>
                 <Container>
                     <Row>
@@ -55,18 +55,18 @@ const Results = function Results(props){
                                 <Card.Text>
                                     <Alert variant="info">
                                         <Badge pill variant="warning" style={{fontSize:16,float:'right'}}>
-                                            {isUserSelectOptionOne?"Voted":null}
+                                            {isUserSelectOptionOne?"My Vote":null}
                                         </Badge>
 
-                                        <p>{filteredQuestion[0].optionOne.text}</p>
+                                        <div>{filteredQuestion[0].optionOne.text}</div>
                                         <ProgressBar variant="success" now={optionOnePercentage} label={`${optionOnePercentage}%`} />
                                         {optionOneVotes} out of {totalVotes} votes
                                     </Alert>
                                     <Alert variant="danger">
                                         <Badge pill variant="warning" style={{fontSize:16,float:'right'}}>
-                                            {!isUserSelectOptionOne?"Voted":null}
+                                            {!isUserSelectOptionOne?"My Vote":null}
                                         </Badge>
-                                        <p>{filteredQuestion[0].optionTwo.text}</p>
+                                        <div>{filteredQuestion[0].optionTwo.text}</div>
                                         <ProgressBar variant="secondary" now={optionTwoPercentage} label={`${optionTwoPercentage}%`} />
                                         {optionTwoVotes} out of {totalVotes} votes
                                     </Alert>

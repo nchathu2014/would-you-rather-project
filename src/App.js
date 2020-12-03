@@ -38,9 +38,9 @@ class App extends Component{
                   <Switch>
 
                       <Route exact path="/login" component={Login}/>
-                      <Route exact path="/new-question" component={NewQuestion}/>
+                      <Route exact path="/add" component={NewQuestion}/>
                       <Route exact path="/dashboard" component={Dashboard}/>
-                      <Route exact path="/leader-board" render = {()=>(
+                      <Route exact path="/leaderboard" render = {()=>(
                           <LeaderBoard userIds = {this.props.userIds}/>
                       )}/>
 

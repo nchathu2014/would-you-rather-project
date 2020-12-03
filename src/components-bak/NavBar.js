@@ -27,14 +27,14 @@ function NavBar(props){
                 </li>
                 <li>
                     <NavLink
-                        to={loggedUser !== null ? "/new-question" : "/"}
+                        to={loggedUser !== null ? "/add" : "/"}
                         activeClassName={loggedUser !== null?"active":"select"}>
                         New Question
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to={loggedUser !== null ? "/leader-board" : "/"}
+                        to={loggedUser !== null ? "/leaderboard" : "/"}
                         activeClassName={loggedUser !== null?"active":"select"}>
                         Leader Board
                     </NavLink>

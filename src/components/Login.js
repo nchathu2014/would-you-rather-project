@@ -23,9 +23,10 @@ class Login extends Component{
     handleUserLogin = () =>{
         const {selectedUser} = this.state;
         this.props.dispatch(addLoggedUserToStore(selectedUser));
-        this.props.history.push('/dashboard')
-        //this.props.history.push('/new-question')
-
+        this.props.history.push({
+            pathname:'/dashboard',
+            state:{from:'home'}
+        })
     };
 
     render() {

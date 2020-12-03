@@ -37,7 +37,7 @@ class Dashboard extends Component{
                 });
 
 
-
+                        const answeredQuestionsSorted = _.orderBy(answeredQuestions, ['timestamp'],['desc']);
                         const unAnsweredQuestionsSorted = _.orderBy(unAnsweredQuestions, ['timestamp'],['desc']);
 
                         const showResults = (e,questionId,userName,avatarURL) => {
@@ -66,12 +66,14 @@ class Dashboard extends Component{
             });
         };
 
+        const {from} = this.props.location.state;
+        console.log('@@@@@@@@ FROM @@@@@@',this.props.location.state)
 
             return (
-               <Tabs id="uncontrolled-tab-example" defaultActiveKey="unAnsweredQs" style={{margin:"5px 0"}}>
+               <Tabs id="uncontrolled-tab-example" defaultActiveKey={(from === 'home' || from === 'view-only') ?"unAnsweredQs":"answeredQs"} style={{margin:"5px 0"}}>
                     <Tab eventKey="answeredQs" title="Answered Questions" style={{marginTop:30}}>
                         <ul style={{listStyle:'none',display:"flex", flexWrap:'wrap', justifyContent:'center'}}>
-                            {answeredQuestions.map(question=>(
+                            {answeredQuestionsSorted.map(question=>(
                                 <li key={question.id}>
                                     <Card style={{ width: '15rem',height: "100%",textAlign:'center'}} >
                                         <Card.Img variant="top" src={question.userInfo.avatarURL} />
