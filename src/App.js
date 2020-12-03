@@ -25,32 +25,27 @@ class App extends Component{
 
     componentDidMount() {
         this.props.dispatch(getUsersFromBE());
-        //this.props.dispatch(getQuestionsFromBE());
     }
 
     render() {
       return (
           <Router>
-
+              {this.props.loggedUser && <NavBar loggedUser = {this.props.loggedUser}/>}
+              <LoadingBar style={{ backgroundColor: '#FFC107', height: '5px' }} />
               <Fragment>
 
-                  {this.props.loggedUser && <NavBar loggedUser = {this.props.loggedUser}/>}
-                  <LoadingBar style={{ backgroundColor: '#FFC107', height: '5px' }} />
                   <Switch>
-
-                      <Route exact path="/login" component={Login}/>
-
+                      <Route exact path="/" component={Login}/>
                       <Route exact path="/add" component={NewQuestion}/>
                       <Route exact path="/dashboard" component={Dashboard}/>
                       <Route exact path="/leaderboard" render = {()=>(
                           <LeaderBoard userIds = {this.props.userIds}/>
                       )}/>
-
                       <Route  exact path="/questions/:id" component={View}/>
                       <Route  exact path="/questions/:id/results" component={Results}/>
+                      <Route exact path="/login" component={Login}/>
                       <Route exact path="/logout" component={Logout}/>
                       <Route component={PageNotFound} />
-
                   </Switch>
               </Fragment>
           </Router>
@@ -58,19 +53,11 @@ class App extends Component{
   }
 }
 
-function mapStateToProps({users,questions,loggedUser}) {
-
-    console.log('###############users',users)
-    //_.orderBy(users, ['timestamp'],['desc']);
-    console.log('########### ORDERED',)
-    return{
+function mapStateToProps({users,loggedUser}) {
+    return {
         loggedUser,
         userIds: Object.keys(users),
-        /*users: Object.keys(users).map(userId => users[userId]),
-        userIds: Object.keys(users),
-        questions: Object.keys(questions).map(questionId => questions[questionId]),
-        loggedUser*/
     }
 }
 
-export default connect(mapStateToProps,null)(App);
+export default connect(mapStateToProps)(App);

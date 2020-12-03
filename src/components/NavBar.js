@@ -1,11 +1,10 @@
 import React from "react";
-import {Nav, Navbar} from "react-bootstrap";
-import {connect} from "react-redux";
-import {removeLoggedUserToStore} from "../actions/loggedUser";
 import {NavLink, Link} from 'react-router-dom'
-import {removeQuestionsFromStore} from "../actions/questions";
-import Badge from "react-bootstrap/Badge";
+import {connect} from "react-redux";
 
+import {Nav, Navbar,Badge} from "react-bootstrap";
+import {removeLoggedUserToStore} from "../actions/loggedUser";
+import {removeQuestionsFromStore} from "../actions/questions";
 
 const NavBar = function NavBar(props) {
 
@@ -17,7 +16,7 @@ const NavBar = function NavBar(props) {
     return (
         <Navbar bg="dark">
             <Navbar.Brand>
-                <Badge variant="warning" style={{fontSize: 18, padding: 10}}> Would You Rather</Badge>
+                <Badge variant="warning" style={{fontSize: 18, padding: 10}}> Would - You - Rather</Badge>
             </Navbar.Brand>
             <Navbar.Toggle/>
             <Navbar.Collapse className="justify-content-end">

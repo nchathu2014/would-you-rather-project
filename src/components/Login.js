@@ -13,19 +13,25 @@ class Login extends Component {
     };
 
     handleLoginUserSelect = (e) => {
+
         const {users} = this.props;
         this.setState({
-            selectedUser: users[e.target.value]
+            selectedUser: e.target.value === "-1" ? "-1":users[e.target.value]
         });
     };
 
     handleUserLogin = () => {
         const {selectedUser} = this.state;
-        this.props.dispatch(addLoggedUserToStore(selectedUser));
-        this.props.history.push({
-            pathname: '/dashboard',
-            state: {from: 'home'}
-        })
+        console.log(selectedUser)
+
+        if(selectedUser !== "-1"){
+            this.props.dispatch(addLoggedUserToStore(selectedUser));
+            this.props.history.push({
+                pathname: '/dashboard',
+                state: {from: 'home'}
+            })
+        }
+
     };
 
     render() {
@@ -46,7 +52,7 @@ class Login extends Component {
 
                         <Form.Group controlId="exampleForm.ControlSelect1">
                             <Form.Control as="select" onChange={(e) => this.handleLoginUserSelect(e)}>
-                                <option selected disabled>--- Select User ---</option>
+                                <option value="-1">--- Select User ---</option>
                                 {this.props.userIds.length > 0 &&
                                 this.props.userIds.map(userId => (
                                     <option key={userId} value={userId}>
@@ -58,11 +64,11 @@ class Login extends Component {
                         </Form.Group>
 
                     </Card.Text>
-                    {this.state.selectedUser !== null &&
+                    {(this.state.selectedUser !== null && this.state.selectedUser !== "-1") &&
                     <Button
                         variant="outline-dark"
                         style={{margin: 0, width: '100%'}}
-                        disabled={this.state.selectedUser === null}
+                        disabled={this.state.selectedUser === "-1"}
                         onClick={this.handleUserLogin}>Sign In</Button>
                     }
                 </Card.Body>
