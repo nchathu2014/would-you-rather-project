@@ -43,6 +43,8 @@ class NewQuestion extends Component {
 
     render() {
         const {loggedUser} = this.props;
+        const {optionOne,optionTwo} = this.state;
+        const isSubmitBtnEnable = optionOne.length > 0 && optionTwo.length > 0;
         if (loggedUser === null) {
             return <Redirect to="/logout"/>
         }
@@ -75,10 +77,11 @@ class NewQuestion extends Component {
                             />
                         </Form>
                     </Card.Text>
+                    {isSubmitBtnEnable &&
                     <Button
                         variant="outline-dark"
-                        disabled={!this.state.optionOne && !this.state.optionTwo}
                         onClick={this.handleSubmit}>Submit</Button>
+                    }
                 </Card.Body>
             </Card>
         );
