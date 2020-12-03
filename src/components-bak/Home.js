@@ -7,8 +7,6 @@ import {connect} from "react-redux";
 const Home = function Home(props){
 
 
-    console.log('@@@@answeredQuestions@@@@',props.answeredQuestions);
-    console.log('!!!!unAnsweredQuestions!!!!',props.unAnsweredQuestions);
 
         return (
             <div>
@@ -32,8 +30,7 @@ const Home = function Home(props){
 };
 
 function mapStateToProps({questions},{questionIds}) {
-    //console.log('!!!!!!questionIds!!!!!1',questionIds);
-    //console.log('!!!!!!questions!!!!!1',questions);
+
 
     const questionList = questionIds.map(questionId => questions[questionId]);
 

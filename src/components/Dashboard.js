@@ -67,10 +67,14 @@ class Dashboard extends Component{
         };
 
         const {from} = this.props.location.state;
-        console.log('@@@@@@@@ FROM @@@@@@',this.props.location.state)
+        const isUnansweredSelected =
+            from === 'home' ||
+            from === 'view-only'||
+            from==='new-question';
+
 
             return (
-               <Tabs id="uncontrolled-tab-example" defaultActiveKey={(from === 'home' || from === 'view-only') ?"unAnsweredQs":"answeredQs"} style={{margin:"5px 0"}}>
+               <Tabs id="uncontrolled-tab-example" defaultActiveKey={ isUnansweredSelected?"unAnsweredQs":"answeredQs"} style={{margin:"5px 0"}}>
                     <Tab eventKey="answeredQs" title="Answered Questions" style={{marginTop:30}}>
                         <ul style={{listStyle:'none',display:"flex", flexWrap:'wrap', justifyContent:'center'}}>
                             {answeredQuestionsSorted.map(question=>(

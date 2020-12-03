@@ -39,7 +39,7 @@ state={
         this.props.dispatch(saveNewQuestionToBE(newQuestion));
         this.props.history.push({
             pathname:'/dashboard',
-            state:{from:'newquestion'}
+            state:{from:'new-question'}
         });
     };
     render() {
