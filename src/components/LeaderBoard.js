@@ -1,81 +1,70 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import {connect} from "react-redux";
-import Score from "../components/Score";
-import {Button, Card, Form} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import * as _ from "lodash";
 import Badge from "react-bootstrap/Badge";
-import gold_cup  from "./../assets/images/gold_cup.png";
-import silver_cup  from "./../assets/images/silver_cup.png";
-import bronze_cup  from "./../assets/images/bronze_cup.png";
-import {Redirect} from "react-router";
+import gold_cup from "./../assets/images/gold_cup.png";
+import silver_cup from "./../assets/images/silver_cup.png";
+import bronze_cup from "./../assets/images/bronze_cup.png";
+import {Redirect} from "react-router-dom";
 
 
-class LeaderBoard extends Component{
-   render() {
+class LeaderBoard extends Component {
+    render() {
 
-       //console.log('@@this.props.loggedUser@@@@@',props.loggedUser)
-       if(this.props.loggedUser === null){return <Redirect to="/login"/>}
+        if (this.props.loggedUser === null) {
+            return <Redirect to="/logout"/>
+        }
 
+        const medals = [gold_cup, silver_cup, bronze_cup];
+        return (
+            <ul style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', margin: '30px auto'}}>
+                {this.props.users.map((user, index) => (
+                    <li key={user.id}>
+                        <Card style={{width: '15rem'}}>
+                            <Card.Header style={{textAlign: 'center'}}><strong>{user.name}</strong></Card.Header>
+                            <Card.Img variant="top" src={user.avatarURL}/>
+                            <Card.Body>
+                                <Card.Title style={{textAlign: 'center'}}>
+                                    <h2>
+                                        <Badge variant="danger"> {`Score: ${user.score}`}</Badge>
+                                        <Card.Img variant="top" src={medals[index]} style={{width: '40%'}}/>
 
-       const medals = [gold_cup,silver_cup,bronze_cup];
-       return(
-           <ul style={{display:'flex',flexWrap:'wrap', justifyContent:'center',margin:'30px auto'}}>
-               {this.props.users.map((user,index) =>(
-                   <li key={user.id}>
-                       <Card style={{ width: '15rem'}}>
-                <Card.Header style={{textAlign:'center'}}><strong>{user.name}</strong></Card.Header>
-                <Card.Img variant="top" src={user.avatarURL} />
-                <Card.Body>
-                    <Card.Title style={{textAlign:'center'}}>
-                        <h2>
-                            <Badge variant="danger"> {`Score: ${user.score}`}</Badge>
-                            <Card.Img variant="top" src={medals[index]} style={{width:'40%'}}/>
+                                    </h2>
+                                </Card.Title>
+                                <Card.Text>
 
-                        </h2>
-                    </Card.Title>
-                    <Card.Text>
+                                    <div>
+                                        <b>Answered Questions:</b> {Object.keys(user.answers).length}
+                                    </div>
 
+                                    <div>
+                                        <b>Created Questions:</b> {user.questions.length}
+                                    </div>
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </li>
+                ))}
 
-                            <div>
-
-                                    <b>Answered Questions:</b> {Object.keys(user.answers).length}
-
-                            </div>
-
-
-                           <div>
-
-                                   <b>Created Questions:</b> {user.questions.length}
-
-                           </div>
-
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-                   </li>
-               ))}
-
-           </ul>
-       );
-   }
+            </ul>
+        );
+    }
 }
 
-function mapStateToProps({users,loggedUser}){
+function mapStateToProps({users, loggedUser}) {
 
     const usersList = Object.keys(users).map(userId => users[userId]);
-    usersList.map(user=>{
-        const{answers,questions} = _.pick(user,['answers','questions']);
+    usersList.map(user => {
+        const {answers, questions} = _.pick(user, ['answers', 'questions']);
         const score = Object.keys(answers).length + questions.length;
         user['score'] = score;
 
     });
-    //_.orderBy(usersList, ['score'],['desc']);
 
-
-
-    return{
+    return {
         loggedUser,
-        users:_.orderBy(usersList, ['score'],['desc'])
+        users: _.orderBy(usersList, ['score'], ['desc'])
     }
 }
 

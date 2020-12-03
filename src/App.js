@@ -17,6 +17,7 @@ import Results from "./components/Results"
 import View from "./components/View"
 import LeaderBoard from "./components/LeaderBoard";
 import PageNotFound from "./components/PageNotFound";
+import Logout from "./components/Logout";
 import * as _ from "lodash";
 
 
@@ -38,6 +39,7 @@ class App extends Component{
                   <Switch>
 
                       <Route exact path="/login" component={Login}/>
+
                       <Route exact path="/add" component={NewQuestion}/>
                       <Route exact path="/dashboard" component={Dashboard}/>
                       <Route exact path="/leaderboard" render = {()=>(
@@ -46,7 +48,9 @@ class App extends Component{
 
                       <Route  exact path="/questions/:id" component={View}/>
                       <Route  exact path="/questions/:id/results" component={Results}/>
+                      <Route exact path="/logout" component={Logout}/>
                       <Route component={PageNotFound} />
+
                   </Switch>
               </Fragment>
           </Router>

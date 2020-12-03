@@ -1,58 +1,57 @@
-import React,{Component} from "react";
-import {Card, Button, Form} from "react-bootstrap";
-import {getQuestionsFromBE, getUsersFromBE, saveNewQuestionToBE} from "../actions/shared";
+import React, {Component} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {Redirect} from "react-router-dom";
+import {getQuestionsFromBE, saveNewQuestionToBE} from "../actions/shared";
+import {Card, Button, Form} from "react-bootstrap";
+
 import questionImg from "../assets/images/question.png";
 
+class NewQuestion extends Component {
 
-
-class NewQuestion extends Component{
-
-state={
-    optionOne:'',
-    optionTwo:''
-};
+    state = {
+        optionOne: '',
+        optionTwo: ''
+    };
 
     componentDidMount() {
-
         this.props.dispatch(getQuestionsFromBE());
     }
 
     handleOnChange = (e) => {
-        const {name,value} = e.target;
+        const {name, value} = e.target;
 
         this.setState({
-            [name]:value
+            [name]: value
         });
     };
 
-     handleSubmit = () => {
-         const {loggedUser} = this.props;
+    handleSubmit = () => {
+        const {loggedUser} = this.props;
         const newQuestion = {
-            author:loggedUser.id,
-            optionOneText:this.state.optionOne,
-            optionTwoText:this.state.optionTwo,
+            author: loggedUser.id,
+            optionOneText: this.state.optionOne,
+            optionTwoText: this.state.optionTwo,
         };
 
         this.props.dispatch(saveNewQuestionToBE(newQuestion));
         this.props.history.push({
-            pathname:'/dashboard',
-            state:{from:'new-question'}
+            pathname: '/dashboard',
+            state: {from: 'new-question'}
         });
     };
+
     render() {
         const {loggedUser} = this.props;
-        if(loggedUser === null){
-            return <Redirect to="/login"/>
+        if (loggedUser === null) {
+            return <Redirect to="/logout"/>
         }
-        return(
-            <Card className="text-center" style={{width:'35%',margin:'30px auto'}}>
-                <Card.Header style={{fontWeight:'bold',fontSize:18}}> Create New Question </Card.Header>
+        return (
+            <Card className="text-center" style={{width: '35%', margin: '30px auto'}}>
+                <Card.Header style={{fontWeight: 'bold', fontSize: 18}}> Create New Question </Card.Header>
                 <Card.Img variant="top" src={questionImg} style={{width: '20%', margin: '10px auto'}}/>
                 <Card.Body>
-                    <Card.Title style={{fontSize:16}}>
+                    <Card.Title style={{fontSize: 16}}>
                         <div>Complete the question:</div>
                         <div><b>Would you rather...</b></div>
                     </Card.Title>
@@ -62,18 +61,16 @@ state={
                             <Form.Control
                                 type="text"
                                 name="optionOne"
-                                //ref = {(value)=> this.optionOne = value}
                                 placeholder="Enter Option One Text Here"
-                                onChange={(e)=>this.handleOnChange(e)}
+                                onChange={(e) => this.handleOnChange(e)}
                                 value={this.state.optionOne}
                             />
-                            <div style={{margin:'10px 0'}}>OR</div>
+                            <div style={{margin: '10px 0'}}>OR</div>
                             <Form.Control
                                 type="text"
                                 name="optionTwo"
-                                //ref = {(value)=> this.optionTwo = value}
                                 placeholder="Enter Option Two Text Here"
-                                onChange={(e)=>this.handleOnChange(e)}
+                                onChange={(e) => this.handleOnChange(e)}
                                 value={this.state.optionTwo}
                             />
                         </Form>
@@ -88,8 +85,8 @@ state={
     }
 }
 
-function mapStateToProps({loggedUser}){
-    return{
+function mapStateToProps({loggedUser}) {
+    return {
         loggedUser
     }
 }
