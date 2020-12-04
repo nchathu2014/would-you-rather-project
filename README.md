@@ -1,12 +1,14 @@
-# Would You Rather Project (W - Y - R)
+# Would You Rather (W - Y - R)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
 ![GitHub repo size](https://img.shields.io/github/repo-size/nchathu2014/would-you-rather)
 ![GitHub contributors](https://img.shields.io/badge/contributors-1-yellow)
 ![Github Issues](https://img.shields.io/github/issues/nchathu2014/would-you-rather-project)
 ![GitHub stars](https://img.shields.io/github/stars/nchathu2014/would-you-rather-project)
 ![GitHub forks](https://img.shields.io/github/forks/nchathu2014/would-you-rather-project)
 ![License](https://img.shields.io/github/license/nchathu2014/would-you-rather-project)
+
 In the "Would You Rather?" Project, you'll build a web app that lets a user play the “Would You Rather?” game. The game goes like this: A user is asked a question in the form: “Would you rather [option A] or [option B] ?”. Answering "neither" or "both" is against the rules.
 
 In your app, users will be able to answer questions, see which questions they haven’t answered, see how other people have voted, post questions, and see the ranking of users on the leaderboard..
