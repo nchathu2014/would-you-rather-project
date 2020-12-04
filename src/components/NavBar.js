@@ -26,7 +26,7 @@ const NavBar = function NavBar(props) {
                             <NavLink
                                 exact
                                 to={{
-                                    pathname: "/dashboard",
+                                    pathname: "/",
                                     state: {from: 'home'}
                                 }}
                                 activeClassName={"active"}>

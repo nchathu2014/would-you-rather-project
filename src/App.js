@@ -31,9 +31,8 @@ class App extends Component{
               <LoadingBar style={{ backgroundColor: '#FFC107', height: '5px' }} />
               <Fragment>
                   <Switch>
-                      <Route exact path="/" component={Login}/>
+                      <Route exact path="/" component={Dashboard}/>
                       <Route exact path="/add" component={NewQuestion}/>
-                      <Route exact path="/dashboard" component={Dashboard}/>
                       <Route exact path="/leaderboard" render = {()=>(
                           <LeaderBoard userIds = {this.props.userIds}/>
                       )}/>

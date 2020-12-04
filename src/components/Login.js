@@ -24,7 +24,7 @@ class Login extends Component {
         if (selectedUser !== "-1") {
             this.props.dispatch(addLoggedUserToStore(selectedUser));
             this.props.history.push({
-                pathname: '/dashboard',
+                pathname: '/',
                 state: {from: 'home'}
             })
         }

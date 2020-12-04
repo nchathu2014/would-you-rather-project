@@ -23,7 +23,7 @@ const Results = function Results(props) {
     return (
         <Card style={{width: '44rem', margin: '50px auto'}}>
             <Card.Header><strong>Asked By</strong> {userName}
-                <Link to={{pathname: "/dashboard", state: {from: 'results'}}} style={{float: 'right'}}>[Back]</Link>
+                <Link to={{pathname: "/", state: {from: 'results'}}} style={{float: 'right'}}>[Back]</Link>
             </Card.Header>
             <Container>
                 <Row>

@@ -19,7 +19,7 @@ class View extends Component {
     handleSubmit = (question, selectOption) => {
         this.props.dispatch(saveQuestionAnswer(question, selectOption));
         this.props.history.push({
-            pathname: '/dashboard',
+            pathname: '/',
             state: {from: 'view'}
         });
     };
@@ -37,7 +37,7 @@ class View extends Component {
         return (
                 <Card style={{width: '35rem', margin: '40px auto'}}>
                     <Card.Header><strong>{userName}</strong> asks
-                        <Link to={{pathname: '/dashboard', state: {from: 'view-only'}}}
+                        <Link to={{pathname: '/', state: {from: 'view-only'}}}
                               style={{float: 'right'}}>[Back]</Link>
                     </Card.Header>
                     <Container>

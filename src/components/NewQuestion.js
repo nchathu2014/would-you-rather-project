@@ -36,7 +36,7 @@ class NewQuestion extends Component {
 
         this.props.dispatch(saveNewQuestionToBE(newQuestion));
         this.props.history.push({
-            pathname: '/dashboard',
+            pathname: '/',
             state: {from: 'new-question'}
         });
     };
