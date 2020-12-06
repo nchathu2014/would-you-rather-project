@@ -1,19 +1,17 @@
 import React from "react";
-import {withRouter, Redirect, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {Card, Container, Row, Col, Alert, ProgressBar, Badge} from "react-bootstrap";
 import PageNotFound from "./PageNotFound";
 
 const Results = function Results(props) {
 
-    const { id, question, author, pageNotFound,loggedUser} = props;
-    const {name,avatarURL} = author;
+    const {question, author, pageNotFound, loggedUser} = props;
+    const {name, avatarURL} = author;
 
     if (pageNotFound === true) {
-        return <PageNotFound />;
+        return <PageNotFound/>;
     }
-
-    //const {filteredQuestion, userName, avatarURL} = props.location.state;
 
     const optionOneVotes = question.optionOne.votes.length;
     const optionTwoVotes = question.optionTwo.votes.length;
@@ -66,11 +64,10 @@ const Results = function Results(props) {
     );
 };
 
-function mapStateToProps({loggedUser,questions,users,match},props) {
+function mapStateToProps({loggedUser, questions, users, match}, props) {
 
     let pageNotFound = true;
     const {id} = props.match.params;
-    console.log('@@@@@@@@@@@@ ID @@@@@@@@@',id)
     let specificQuestion = "";
     let author = "";
 
@@ -79,7 +76,6 @@ function mapStateToProps({loggedUser,questions,users,match},props) {
         specificQuestion = questions[id];
         author = users[specificQuestion["author"]];
     }
-
 
     return {
         id,

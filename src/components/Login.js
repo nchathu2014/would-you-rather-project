@@ -1,11 +1,10 @@
 import React, {Component} from "react";
 import {Card, Button, Form} from "react-bootstrap";
 import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
+import {withRouter,Redirect} from "react-router-dom";
 
 import {addLoggedUserToStore} from "../actions/loggedUser";
 import loginImg from "./../assets/images/login.png";
-import Redirect from "react-router-dom/es/Redirect";
 
 class Login extends Component {
 
@@ -24,10 +23,6 @@ class Login extends Component {
         const {selectedUser} = this.state;
         if (selectedUser !== "-1") {
             this.props.dispatch(addLoggedUserToStore(selectedUser));
-           /* this.props.history.push({
-                pathname: '/',
-                state: {from: 'home'}
-            })*/
         }
     };
 
@@ -42,8 +37,6 @@ class Login extends Component {
         if (this.props.isAuthed) {
             return <Redirect to={from} />;
         }
-
-
 
         return (
             <Card className="text-center" style={{width: '30%', margin: '5% auto'}}>
@@ -94,7 +87,6 @@ function mapStateToProps({users,loggedUser}) {
         userIds: Object.keys(users),
         isAuthed: loggedUser.authenticated,
         loading: users === null,
-
     }
 }
 

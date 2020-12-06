@@ -1,21 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Card} from "react-bootstrap";
-import * as _ from "lodash";
+import {pick, orderBy}from "lodash";
+
 import Badge from "react-bootstrap/Badge";
 import gold_cup from "./../assets/images/gold_cup.png";
 import silver_cup from "./../assets/images/silver_cup.png";
 import bronze_cup from "./../assets/images/bronze_cup.png";
-import {Redirect} from "react-router-dom";
 
+import {Card} from "react-bootstrap";
 
 class LeaderBoard extends Component {
     render() {
-
-       /* if (this.props.loggedUser === null) {
-            return <Redirect to="/logout"/>
-        }*/
-
         const medals = [gold_cup, silver_cup, bronze_cup];
         return (
             <ul style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', margin: '30px auto'}}>
@@ -29,15 +24,12 @@ class LeaderBoard extends Component {
                                     <h2>
                                         <Badge variant="danger"> {`Score: ${user.score}`}</Badge>
                                         <Card.Img variant="top" src={medals[index]} style={{width: '40%'}}/>
-
                                     </h2>
                                 </Card.Title>
                                 <Card.Text>
-
                                     <div>
                                         <b>Answered Questions:</b> {Object.keys(user.answers).length}
                                     </div>
-
                                     <div>
                                         <b>Created Questions:</b> {user.questions.length}
                                     </div>
@@ -46,7 +38,6 @@ class LeaderBoard extends Component {
                         </Card>
                     </li>
                 ))}
-
             </ul>
         );
     }
@@ -56,15 +47,14 @@ function mapStateToProps({users, loggedUser}) {
 
     const usersList = Object.keys(users).map(userId => users[userId]);
     usersList.map(user => {
-        const {answers, questions} = _.pick(user, ['answers', 'questions']);
+        const {answers, questions} = pick(user, ['answers', 'questions']);
         const score = Object.keys(answers).length + questions.length;
         user['score'] = score;
-
     });
 
     return {
         loggedUser,
-        users: _.orderBy(usersList, ['score'], ['desc'])
+        users: orderBy(usersList, ['score'], ['desc'])
     }
 }
 

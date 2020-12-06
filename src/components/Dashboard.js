@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Tabs, Tab, Card, Button} from "react-bootstrap";
 import connect from "react-redux/es/connect/connect";
 import * as _ from "lodash";
-import {withRouter, Redirect} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {getQuestionsFromBE} from "../actions/shared";
 
 class Dashboard extends Component {
@@ -13,10 +13,6 @@ class Dashboard extends Component {
 
     render() {
         const {questions, users, loggedUser} = this.props;
-        console.log('######33 loggedUser #####',loggedUser.id)
-        /*if (loggedUser === null) {
-            return <Redirect to="/logout"/>
-        }*/
         questions.map(question => {
             return question['userInfo'] = users[question.author]
         });
@@ -34,36 +30,24 @@ class Dashboard extends Component {
         const answeredQuestionsSorted = _.orderBy(answeredQuestions, ['timestamp'], ['desc']);
         const unAnsweredQuestionsSorted = _.orderBy(unAnsweredQuestions, ['timestamp'], ['desc']);
 
-        const showResults = (e, questionId, userName, avatarURL) => {
+        const showResults = (e, questionId) => {
 
             e.preventDefault();
-            const filteredQuestion = answeredQuestions.filter(question => question.id === questionId)
-
             this.props.history.push({
-                pathname: `/questions/${questionId}/results`,
-                state: {filteredQuestion, userName, avatarURL}
+                pathname: `/questions/${questionId}/results`
             });
         };
 
-        const showViews = (e, questionId, userName, avatarURL) => {
+        const showViews = (e, questionId) => {
             e.preventDefault();
-            const filteredQuestion = unAnsweredQuestions.filter(question => question.id === questionId)
 
             this.props.history.push({
-                pathname: `/questions/${questionId}`,
-                state: {filteredQuestion, userName, avatarURL}
+                pathname: `/questions/${questionId}`
             });
         };
-
-
-        const isUnansweredSelected= true;
-        /*const isUnansweredSelected =
-            from === 'home' ||
-            from === 'view-only' ||
-            from === 'new-question';*/
 
         return (
-            <Tabs id="uncontrolled-tab-example" defaultActiveKey={isUnansweredSelected ? "unAnsweredQs" : "answeredQs"}
+            <Tabs id="uncontrolled-tab-example" defaultActiveKey={"unAnsweredQs"}
                   style={{margin: "5px 0"}}>
                 <Tab eventKey="answeredQs" title="Answered Questions" style={{marginTop: 30}}>
                     <ul style={{listStyle: 'none', display: "flex", flexWrap: 'wrap', justifyContent: 'center'}}>

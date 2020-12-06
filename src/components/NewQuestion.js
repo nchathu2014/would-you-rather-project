@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {Redirect} from "react-router-dom";
 import {getQuestionsFromBE, saveNewQuestionToBE} from "../actions/shared";
 import {Card, Button, Form} from "react-bootstrap";
 
@@ -36,25 +35,16 @@ class NewQuestion extends Component {
             optionTwoText: this.state.optionTwo,
         };
 
-
-
-       this.props.dispatch(saveNewQuestionToBE(newQuestion));
+        this.props.dispatch(saveNewQuestionToBE(newQuestion));
         this.props.history.push({
             pathname: '/'
         });
-        /*this.props.history.push({
-            pathname: '/',
-            state: {from: 'new-question'}
-        });*/
     };
 
     render() {
-        const {loggedUser} = this.props;
-        const {optionOne,optionTwo} = this.state;
+        const {optionOne, optionTwo} = this.state;
         const isSubmitBtnEnable = optionOne.length > 0 && optionTwo.length > 0;
-       /* if (loggedUser === null) {
-            return <Redirect to="/logout"/>
-        }*/
+
         return (
             <Card className="text-center" style={{width: '35%', margin: '30px auto'}}>
                 <Card.Header style={{fontWeight: 'bold', fontSize: 18}}> Create New Question </Card.Header>
