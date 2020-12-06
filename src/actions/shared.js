@@ -30,12 +30,14 @@ export function getQuestionsFromBE() {
 }
 
 export function saveNewQuestionToBE(newQuestion){
+    console.log('@@@@ newQuestion @@@@@',newQuestion)
     return (dispatch, getState)=>{
+        const {loggedUser} = getState().loggedUser;
         dispatch(showLoading());
         return _saveQuestion(newQuestion)
             .then((question)=>{
                 dispatch(addNewQuestionToStore(question))
-                dispatch(updateUserQuestions(getState().loggedUser.id,question.id))
+                dispatch(updateUserQuestions(loggedUser.id,question.id))
             })
             .then(()=>{
                 dispatch(hideLoading())
@@ -48,9 +50,9 @@ export function saveQuestionAnswer(question,selectOption){
     return (dispatch,getState)=>{
 
         dispatch(showLoading());
-
+        const {loggedUser} = getState().loggedUser;
         const saveQuestionAnsContract = {
-            authedUser:getState().loggedUser.id,
+            authedUser:loggedUser.id,
             qid:question.id,
             answer:selectOption,
 
@@ -59,8 +61,8 @@ export function saveQuestionAnswer(question,selectOption){
 
         return _saveQuestionAnswer({...saveQuestionAnsContract})
             .then(()=>{
-                dispatch(updateUserAnswer(getState().loggedUser.id, question.id, selectOption))
-                dispatch(updateQuestionAnswer(getState().loggedUser.id, question.id, selectOption))
+                dispatch(updateUserAnswer(loggedUser.id, question.id, selectOption))
+                dispatch(updateQuestionAnswer(loggedUser.id, question.id, selectOption))
             })
             .then(()=>{
                 dispatch(hideLoading());

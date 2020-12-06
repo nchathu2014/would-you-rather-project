@@ -12,9 +12,9 @@ import {Redirect} from "react-router-dom";
 class LeaderBoard extends Component {
     render() {
 
-        if (this.props.loggedUser === null) {
+       /* if (this.props.loggedUser === null) {
             return <Redirect to="/logout"/>
-        }
+        }*/
 
         const medals = [gold_cup, silver_cup, bronze_cup];
         return (

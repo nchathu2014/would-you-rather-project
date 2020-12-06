@@ -27,27 +27,34 @@ class NewQuestion extends Component {
     };
 
     handleSubmit = () => {
-        const {loggedUser} = this.props;
+        const {loggedUser} = this.props.loggedUser;
+
+
         const newQuestion = {
             author: loggedUser.id,
             optionOneText: this.state.optionOne,
             optionTwoText: this.state.optionTwo,
         };
 
-        this.props.dispatch(saveNewQuestionToBE(newQuestion));
+
+
+       this.props.dispatch(saveNewQuestionToBE(newQuestion));
         this.props.history.push({
+            pathname: '/'
+        });
+        /*this.props.history.push({
             pathname: '/',
             state: {from: 'new-question'}
-        });
+        });*/
     };
 
     render() {
         const {loggedUser} = this.props;
         const {optionOne,optionTwo} = this.state;
         const isSubmitBtnEnable = optionOne.length > 0 && optionTwo.length > 0;
-        if (loggedUser === null) {
+       /* if (loggedUser === null) {
             return <Redirect to="/logout"/>
-        }
+        }*/
         return (
             <Card className="text-center" style={{width: '35%', margin: '30px auto'}}>
                 <Card.Header style={{fontWeight: 'bold', fontSize: 18}}> Create New Question </Card.Header>

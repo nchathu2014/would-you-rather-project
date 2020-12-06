@@ -13,21 +13,22 @@ class Dashboard extends Component {
 
     render() {
         const {questions, users, loggedUser} = this.props;
-        if (loggedUser === null) {
+        console.log('######33 loggedUser #####',loggedUser.id)
+        /*if (loggedUser === null) {
             return <Redirect to="/logout"/>
-        }
+        }*/
         questions.map(question => {
             return question['userInfo'] = users[question.author]
         });
 
         const answeredQuestions = questions.filter(question => {
             const votes = question.optionOne.votes.concat(question.optionTwo.votes);
-            return votes.includes(loggedUser.id) === true
+            return votes.includes(loggedUser.loggedUser.id) === true
         });
 
         const unAnsweredQuestions = questions.filter(question => {
             const votes = question.optionOne.votes.concat(question.optionTwo.votes);
-            return votes.includes(loggedUser.id) === false
+            return votes.includes(loggedUser.loggedUser.id) === false
         });
 
         const answeredQuestionsSorted = _.orderBy(answeredQuestions, ['timestamp'], ['desc']);
@@ -54,11 +55,12 @@ class Dashboard extends Component {
             });
         };
 
-        const {from} = this.props.location.state;
-        const isUnansweredSelected =
+
+        const isUnansweredSelected= true;
+        /*const isUnansweredSelected =
             from === 'home' ||
             from === 'view-only' ||
-            from === 'new-question';
+            from === 'new-question';*/
 
         return (
             <Tabs id="uncontrolled-tab-example" defaultActiveKey={isUnansweredSelected ? "unAnsweredQs" : "answeredQs"}
@@ -70,7 +72,7 @@ class Dashboard extends Component {
                                 <Card style={{width: '15rem', height: "100%", textAlign: 'center'}}>
                                     <Card.Img variant="top" src={question.userInfo.avatarURL}/>
                                     <Card.Body
-                                        style={{background: question.author === loggedUser.id ? '#FFD65A' : '#fff'}}>
+                                        style={{background: question.author === loggedUser.loggedUser.id ? '#FFD65A' : '#fff'}}>
                                         <Card.Title>{question.userInfo.name}</Card.Title>
                                         <Card.Text>
                                             <div
@@ -93,7 +95,7 @@ class Dashboard extends Component {
                                 <Card style={{width: '15rem', height: "100%", textAlign: 'center'}}>
                                     <Card.Img variant="top" src={question.userInfo.avatarURL}/>
                                     <Card.Body
-                                        style={{background: question.author === loggedUser.id ? '#FFD65A' : '#fff'}}>
+                                        style={{background: question.author === loggedUser.loggedUser.id ? '#FFD65A' : '#fff'}}>
                                         <Card.Title>{question.userInfo.name}</Card.Title>
                                         <Card.Text>
                                             <div

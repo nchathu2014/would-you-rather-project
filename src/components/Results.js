@@ -2,27 +2,31 @@ import React from "react";
 import {withRouter, Redirect, Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {Card, Container, Row, Col, Alert, ProgressBar, Badge} from "react-bootstrap";
+import PageNotFound from "./PageNotFound";
 
 const Results = function Results(props) {
 
-    if (props.loggedUser === null) {
-        return <Redirect to="/logout"/>
+    const { id, question, author, pageNotFound,loggedUser} = props;
+    const {name,avatarURL} = author;
+
+    if (pageNotFound === true) {
+        return <PageNotFound />;
     }
 
-    const {filteredQuestion, userName, avatarURL} = props.location.state;
+    //const {filteredQuestion, userName, avatarURL} = props.location.state;
 
-    const optionOneVotes = filteredQuestion[0].optionOne.votes.length;
-    const optionTwoVotes = filteredQuestion[0].optionTwo.votes.length;
+    const optionOneVotes = question.optionOne.votes.length;
+    const optionTwoVotes = question.optionTwo.votes.length;
     const totalVotes = optionOneVotes + optionTwoVotes;
 
     const optionOnePercentage = (optionOneVotes / totalVotes * 100).toFixed(1);
     const optionTwoPercentage = (optionTwoVotes / totalVotes * 100).toFixed(1);
 
-    const isUserSelectOptionOne = filteredQuestion[0].optionOne.votes.includes(props.loggedUser.id)
+    const isUserSelectOptionOne = question.optionOne.votes.includes(loggedUser.loggedUser.id)
 
     return (
         <Card style={{width: '44rem', margin: '50px auto'}}>
-            <Card.Header><strong>Asked By</strong> {userName}
+            <Card.Header><strong>Asked By</strong> {name}
                 <Link to={{pathname: "/", state: {from: 'results'}}} style={{float: 'right'}}>[Back]</Link>
             </Card.Header>
             <Container>
@@ -39,7 +43,7 @@ const Results = function Results(props) {
                                         {isUserSelectOptionOne ? "My Vote" : null}
                                     </Badge>
 
-                                    <div>{filteredQuestion[0].optionOne.text}</div>
+                                    <div>{question.optionOne.text}</div>
                                     <ProgressBar variant="success" now={optionOnePercentage}
                                                  label={`${optionOnePercentage}%`}/>
                                     {optionOneVotes} out of {totalVotes} votes
@@ -48,7 +52,7 @@ const Results = function Results(props) {
                                     <Badge pill variant="warning" style={{fontSize: 16, float: 'right'}}>
                                         {!isUserSelectOptionOne ? "My Vote" : null}
                                     </Badge>
-                                    <div>{filteredQuestion[0].optionTwo.text}</div>
+                                    <div>{question.optionTwo.text}</div>
                                     <ProgressBar variant="secondary" now={optionTwoPercentage}
                                                  label={`${optionTwoPercentage}%`}/>
                                     {optionTwoVotes} out of {totalVotes} votes
@@ -62,10 +66,28 @@ const Results = function Results(props) {
     );
 };
 
-function mapStateToProps({loggedUser}) {
+function mapStateToProps({loggedUser,questions,users,match},props) {
+
+    let pageNotFound = true;
+    const {id} = props.match.params;
+    console.log('@@@@@@@@@@@@ ID @@@@@@@@@',id)
+    let specificQuestion = "";
+    let author = "";
+
+    if (questions[id] !== undefined) {
+        pageNotFound = false;
+        specificQuestion = questions[id];
+        author = users[specificQuestion["author"]];
+    }
+
+
     return {
-        loggedUser
+        id,
+        loggedUser,
+        question: specificQuestion,
+        author: author,
+        pageNotFound: pageNotFound,
     }
 }
 
-export default withRouter(connect(mapStateToProps)(Results));
+export default connect(mapStateToProps)(Results);
