@@ -74,7 +74,7 @@ class Login extends Component {
 
                 <Card.Footer style={{background: '#343A40', color: '#fff', fontSize: 14}}>
                     &copy; Copyright 2020: {' '}
-                    <a href="https://www.linkedin.com/in/nchathu/" target="_blank" style={{color: '#fff'}}>[Find Me]</a>
+                    <a href="https://www.linkedin.com/in/nchathu/" target="_blank"  rel="noreferrer" style={{color: '#fff'}}>[Find Me]</a>
                 </Card.Footer>
             </Card>
         );

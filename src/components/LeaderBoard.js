@@ -50,6 +50,7 @@ function mapStateToProps({users, loggedUser}) {
         const {answers, questions} = pick(user, ['answers', 'questions']);
         const score = Object.keys(answers).length + questions.length;
         user['score'] = score;
+        return user;
     });
 
     return {

@@ -52,7 +52,13 @@ const NavBar = function NavBar(props) {
 
                 <Navbar.Text style={{color: '#eee'}}>
                     <strong>Signed in as: </strong>
-                    <img src={props.loggedUser.avatarURL} width={32} height={32} style={{borderRadius: 100}}/> {' '}
+                    <img
+                        src={props.loggedUser.avatarURL}
+                        width={32}
+                        height={32}
+                        style={{borderRadius: 100}}
+                        alt={`user ${props.loggedUser.name}`}
+                    /> {' '}
                     <span style={{fontStyle: 'italic'}}>{props.loggedUser.name}
                         </span>{' '}
                     <Link to="/logout" onClick={handleLogout} style={{color: '#FFC107'}}>[Logout]</Link>
