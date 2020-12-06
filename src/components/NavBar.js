@@ -4,13 +4,11 @@ import {connect} from "react-redux";
 
 import {Nav, Navbar,Badge} from "react-bootstrap";
 import {removeLoggedUserToStore} from "../actions/loggedUser";
-import {removeQuestionsFromStore} from "../actions/questions";
 
 const NavBar = function NavBar(props) {
 
     const handleLogout = () => {
         props.dispatch(removeLoggedUserToStore());
-        props.dispatch(removeQuestionsFromStore())
     };
 
     return (

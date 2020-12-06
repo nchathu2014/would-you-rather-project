@@ -7,8 +7,7 @@ import NavBar from "./components/NavBar";
 import Login from "./components/Login";
 import NewQuestion from "./components/NewQuestion";
 import Dashboard from "./components/Dashboard";
-import Results from "./components/Results"
-import View from "./components/View"
+import ViewComponent from "./components/ViewComponent";
 import LeaderBoard from "./components/LeaderBoard";
 import PageNotFound from "./components/PageNotFound";
 import Logout from "./components/Logout";
@@ -53,17 +52,12 @@ function App(props) {
                                 path="/leaderboard"
                                 isAuthenticated={authenticated}
                                 component={connect(mapStateToProps)(LeaderBoard)}/>
+
                             <ProtectedRoute
                                 exact
                                 isAuthenticated={authenticated}
                                 path="/questions/:id"
-                                component={connect(mapStateToProps)(View)}
-                            />
-                            <ProtectedRoute
-                                exact
-                                isAuthenticated={authenticated}
-                                path="/questions/:id/results"
-                                component={connect(mapStateToProps)(Results)}
+                                component={connect(mapStateToProps)(ViewComponent)}
                             />
                             <Route exact path="/login" component={Login}/>
                             <Route exact path="/logout" component={Logout}/>
@@ -76,10 +70,11 @@ function App(props) {
     );
 }
 
-function mapStateToProps({users, loggedUser}) {
+function mapStateToProps({users,questions, loggedUser}) {
     return {
         loading: false,
         loggedUser,
+        questions,
         userIds: Object.keys(users)
     }
 }

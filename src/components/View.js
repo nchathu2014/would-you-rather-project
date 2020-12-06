@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {Link} from "react-router-dom";
-import {Card, Button, Container, Row, Col,Form} from "react-bootstrap";
+import {Link, withRouter} from "react-router-dom";
+import {Card, Button, Container, Row, Col, Form} from "react-bootstrap";
 import {saveQuestionAnswer} from "../actions/shared";
-import PageNotFound from "./PageNotFound";
 
 class View extends Component {
 
@@ -20,19 +19,13 @@ class View extends Component {
     handleSubmit = (question, selectOption) => {
         this.props.dispatch(saveQuestionAnswer(question, selectOption));
         this.props.history.push({
-            pathname: `/questions/${question.id}/results`
+            pathname: `/questions/${question.id}`
         });
     };
 
     render() {
 
-        const {question, author, pageNotFound} = this.props;
-        const {name, avatarURL} = author;
-
-        if (pageNotFound === true) {
-            return <PageNotFound/>;
-        }
-
+        const {name, avatarURL, question} = this.props;
         const optionOneText = question.optionOne.text;
         const optionTwoText = question.optionTwo.text;
         const {selectOption} = this.state;
@@ -82,25 +75,4 @@ class View extends Component {
     }
 }
 
-function mapStateToProps({loggedUser, questions, users, match}, props) {
-
-    let pageNotFound = true;
-    const {id} = props.match.params;
-    let specificQuestion = "";
-    let author = "";
-
-    if (questions[id] !== undefined) {
-        pageNotFound = false;
-        specificQuestion = questions[id];
-        author = users[specificQuestion["author"]];
-    }
-
-    return {
-        id,
-        question: specificQuestion,
-        author: author,
-        pageNotFound: pageNotFound,
-    }
-}
-
-export default connect(mapStateToProps)(View);
+export default withRouter(connect()(View));

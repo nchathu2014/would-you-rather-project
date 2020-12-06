@@ -1,18 +1,10 @@
 import React from "react";
-import {Link} from "react-router-dom";
-import {connect} from "react-redux";
+import {Link, withRouter} from "react-router-dom";
 import {Card, Container, Row, Col, Alert, ProgressBar, Badge} from "react-bootstrap";
-import PageNotFound from "./PageNotFound";
 
 const Results = function Results(props) {
 
-    const {question, author, pageNotFound, loggedUser} = props;
-    const {name, avatarURL} = author;
-
-    if (pageNotFound === true) {
-        return <PageNotFound/>;
-    }
-
+    const {name, avatarURL, question, loggedUser} = props;
     const optionOneVotes = question.optionOne.votes.length;
     const optionTwoVotes = question.optionTwo.votes.length;
     const totalVotes = optionOneVotes + optionTwoVotes;
@@ -64,26 +56,4 @@ const Results = function Results(props) {
     );
 };
 
-function mapStateToProps({loggedUser, questions, users, match}, props) {
-
-    let pageNotFound = true;
-    const {id} = props.match.params;
-    let specificQuestion = "";
-    let author = "";
-
-    if (questions[id] !== undefined) {
-        pageNotFound = false;
-        specificQuestion = questions[id];
-        author = users[specificQuestion["author"]];
-    }
-
-    return {
-        id,
-        loggedUser,
-        question: specificQuestion,
-        author: author,
-        pageNotFound: pageNotFound,
-    }
-}
-
-export default connect(mapStateToProps)(Results);
+export default withRouter(Results);

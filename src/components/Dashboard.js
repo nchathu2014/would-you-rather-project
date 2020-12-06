@@ -30,14 +30,6 @@ class Dashboard extends Component {
         const answeredQuestionsSorted = _.orderBy(answeredQuestions, ['timestamp'], ['desc']);
         const unAnsweredQuestionsSorted = _.orderBy(unAnsweredQuestions, ['timestamp'], ['desc']);
 
-        const showResults = (e, questionId) => {
-
-            e.preventDefault();
-            this.props.history.push({
-                pathname: `/questions/${questionId}/results`
-            });
-        };
-
         const showViews = (e, questionId) => {
             e.preventDefault();
 
@@ -64,7 +56,7 @@ class Dashboard extends Component {
                                             </span>
                                         </Card.Text>
                                         <Button style={{width: '90%', margin: 0}} variant="outline-dark"
-                                                onClick={(e) => showResults(e, question.id, question.userInfo.name, question.userInfo.avatarURL)}>View
+                                                onClick={(e) => showViews(e, question.id, question.userInfo.name, question.userInfo.avatarURL)}>View
                                             Poll</Button>
                                     </Card.Body>
                                 </Card>
