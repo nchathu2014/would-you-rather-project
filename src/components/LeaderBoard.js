@@ -27,12 +27,12 @@ class LeaderBoard extends Component {
                                     </h2>
                                 </Card.Title>
                                 <Card.Text>
-                                    <div>
+                                    <span style={{display:'inline-block'}}>
                                         <b>Answered Questions:</b> {Object.keys(user.answers).length}
-                                    </div>
-                                    <div>
+                                    </span>
+                                    <span style={{display:'inline-block'}}>
                                         <b>Created Questions:</b> {user.questions.length}
-                                    </div>
+                                    </span>
                                 </Card.Text>
                             </Card.Body>
                         </Card>

@@ -51,8 +51,8 @@ class NewQuestion extends Component {
                 <Card.Img variant="top" src={questionImg} style={{width: '20%', margin: '10px auto'}}/>
                 <Card.Body>
                     <Card.Title style={{fontSize: 16}}>
-                        <div>Complete the question:</div>
-                        <div><b>Would you rather...</b></div>
+                        <span style={{display:'inline-block'}}>Complete the question:</span>
+                        <span  style={{display:'inline-block'}}><b>Would you rather...</b></span>
                     </Card.Title>
 
                     <Card.Text>

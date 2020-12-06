@@ -59,9 +59,9 @@ class Dashboard extends Component {
                                         style={{background: question.author === loggedUser.loggedUser.id ? '#FFD65A' : '#fff'}}>
                                         <Card.Title>{question.userInfo.name}</Card.Title>
                                         <Card.Text>
-                                            <div
+                                            <span
                                                 style={{fontWeight: 'normal', height: 48}}>...{question.optionOne.text}...
-                                            </div>
+                                            </span>
                                         </Card.Text>
                                         <Button style={{width: '90%', margin: 0}} variant="outline-dark"
                                                 onClick={(e) => showResults(e, question.id, question.userInfo.name, question.userInfo.avatarURL)}>View
@@ -82,9 +82,9 @@ class Dashboard extends Component {
                                         style={{background: question.author === loggedUser.loggedUser.id ? '#FFD65A' : '#fff'}}>
                                         <Card.Title>{question.userInfo.name}</Card.Title>
                                         <Card.Text>
-                                            <div
+                                            <span
                                                 style={{fontWeight: 'normal', height: 48}}>...{question.optionOne.text}...
-                                            </div>
+                                            </span>
                                         </Card.Text>
                                         <Button style={{width: '90%', margin: 0}} variant="outline-dark"
                                                 onClick={(e) => showViews(e, question.id, question.userInfo.name, question.userInfo.avatarURL)}>View
