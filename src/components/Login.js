@@ -52,7 +52,7 @@ class Login extends Component {
                     <Card.Title>{"Sign In"}</Card.Title>
                     <Card.Text>
                         <Form.Control as="select" onChange={(e) => this.handleLoginUserSelect(e)}>
-                            <option value="-1">--- Select User ---</option>
+                            <option value="-1">|--- Select User ---|</option>
                             {this.props.userIds.length > 0 &&
                             this.props.userIds.map(userId => (
                                 <option key={userId} value={userId}>
